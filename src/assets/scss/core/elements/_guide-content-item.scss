@@ -1,0 +1,22 @@
+.guide-content-item {
+    margin: 12px 12px !important;
+
+    li:not(:last-child) {
+        border-bottom: 1px solid black;
+    }
+
+    .item-description {
+        width: 100%;
+    }
+
+    h6 {
+        // margin: 0px;
+        display: inline-block;
+    }
+
+    .button {
+        margin: auto 0px;
+        float: right;
+        vertical-align: middle;
+    }
+}

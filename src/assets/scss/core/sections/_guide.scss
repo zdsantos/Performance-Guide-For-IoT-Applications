@@ -1,0 +1,47 @@
+.guide {
+
+	.section-inner {
+		padding-top: $guide--padding-t__mobile;
+		padding-bottom: $guide--padding-b__mobile;
+	}
+
+}
+
+.guide-inner {
+	.header {
+		margin-top: 5px;
+	}
+
+	.content {
+		.react-tabs__tab--selected {
+			background: color(primary);
+		}
+
+		.react-tabs__tab {
+			border-bottom: 3px solid transparent;
+		}
+	}
+}
+
+@include media( '<=medium' ) {
+
+	.guide {
+
+		
+	}
+}
+
+@include media( '>medium' ) {
+
+	.guide {
+
+		.section-inner {
+			padding-top: $guide--padding-t__desktop;
+			padding-bottom: $guide--padding-b__desktop;
+		}
+	}
+
+	.guide-inner {
+
+	}
+}

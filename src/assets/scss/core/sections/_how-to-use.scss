@@ -1,0 +1,65 @@
+.how-to-use {
+
+	.section-inner {
+		padding-top: $how-to-use--padding-t__mobile;
+		padding-bottom: $how-to-use--padding-b__mobile;
+		border-radius: 10px;
+		background-color: color(primary-light);
+	}
+
+	.shadow {
+		-webkit-box-shadow: 4px 4px 5px 0px rgba(163,163,163,1);
+		-moz-box-shadow: 4px 4px 5px 0px rgba(163,163,163,1);
+		box-shadow: 4px 4px 5px 0px rgba(163,163,163,1);
+	}
+}
+
+.how-to-use-inner {
+	.header {
+		margin-top: 5px;
+	}
+
+	.content {
+		padding: 20px;
+		text-align: justify;
+
+		p {
+			color: color(mid-contrast-inverse);
+		}
+	}
+}
+
+@include media( '<=medium' ) {
+
+	.how-to-use {
+
+		.split-wrap {
+
+			.split-item {
+
+				.split-item-content {
+					margin-bottom: $how-to-use--inner-padding-v_mobile;
+				}
+			}
+
+			&.invert-mobile {
+
+			}
+		}
+	}
+}
+
+@include media( '>medium' ) {
+
+	.how-to-use {
+
+		.section-inner {
+			padding-top: $how-to-use--padding-t__desktop;
+			padding-bottom: $how-to-use--padding-b__desktop;
+		}
+	}
+
+	.hero-inner {
+
+	}
+}

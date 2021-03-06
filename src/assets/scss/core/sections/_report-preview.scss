@@ -1,0 +1,38 @@
+.report-preview {
+
+	.section-inner {
+		padding-top: $report-preview--padding-t__mobile;
+		padding-bottom: $report-preview--padding-b__mobile;
+	}
+
+}
+
+.report-preview-inner {
+
+	.content {
+		
+	}
+}
+
+@include media( '<=medium' ) {
+
+	.report-preview {
+
+		
+	}
+}
+
+@include media( '>medium' ) {
+
+	.report-preview {
+
+		.section-inner {
+			padding-top: $report-preview--padding-t__desktop;
+			padding-bottom: $report-preview--padding-b__desktop;
+		}
+	}
+
+	.report-preview-inner {
+
+	}
+}
