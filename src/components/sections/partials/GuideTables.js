@@ -1,24 +1,26 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { SectionTilesProps } from '../../../utils/SectionProps';
-import SectionHeader from './SectionHeader';
-// import Tabs from 'react-bootstrap/Tabs'
-// import Tab from 'react-bootstrap/Tab'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import guideContent from '../../../models/guide-content-base';
+import { guideContent, tools } from '../../../models/guide-content-base';
 import 'react-tabs/style/react-tabs.css';
 import GuideContentItem from '../../elements/GuideContentItem';
+import GuideCaracteristcItem from '../../elements/GuideCaracteristcItem';
 
 const propTypes = {
+    newItem: PropTypes.func,
     ...SectionTilesProps.types
 }
 
 const defaultProps = {
+    newItem: () => {},
     ...SectionTilesProps.defaults
 }
 
 const GuideTables = ({
     className,
+    newItem,
     topOuterDivider,
     bottomOuterDivider,
     topDivider,
@@ -45,7 +47,19 @@ const GuideTables = ({
     );
 
     const renderGuideContentItem = (item) => {
-        return (<GuideContentItem data={item}/>)
+        return (<GuideContentItem data={item} addAction={addItem} bottomOuterDivider />)
+    }
+
+    const renderGuideCaracteristcTestCases = (item) => {
+        return (<GuideCaracteristcItem data={item} property="testCases" addAction={addItem} bottomOuterDivider />)
+    }
+
+    const renderGuideCaracteristcMetrics = (item) => {
+        return (<GuideCaracteristcItem data={item} property="metrics" addAction={addItem} bottomOuterDivider />)
+    }
+
+    const addItem = (item) => {
+        newItem(item);
     }
 
     return (
@@ -63,18 +77,18 @@ const GuideTables = ({
                         </TabList>
 
                         <TabPanel>
-                            <ul>
-                                {guideContent.testCases.map(renderGuideContentItem)}
+                            <ul className="tab-panel-inner">
+                                {guideContent.map(renderGuideCaracteristcTestCases)}
                             </ul>
                         </TabPanel>
                         <TabPanel>
-                            <ul>
-                                {guideContent.metrics.map(renderGuideContentItem)}
+                            <ul className="tab-panel-inner">
+                                {guideContent.map(renderGuideCaracteristcMetrics)}
                             </ul>
                         </TabPanel>
                         <TabPanel>
-                            <ul>
-                                {guideContent.tools.map(renderGuideContentItem)}
+                            <ul className="tab-panel-inner">
+                                {tools.map(renderGuideContentItem)}
                             </ul>
                         </TabPanel>
                     </Tabs>

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 const propTypes = {
   navPosition: PropTypes.string,
@@ -111,29 +112,29 @@ const Header = ({
                       navPosition && `header-nav-${navPosition}`
                     )}>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>Home</Link>
+                      <Link to="#home" onClick={closeMenu}>Home</Link>
                     </li>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>About</Link>
+                      <Link to="#about" onClick={closeMenu}>About</Link>
                     </li>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>Guide</Link>
+                      <Link to="#how-to-use" onClick={closeMenu}>How to Use</Link>
                     </li>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>How to Use</Link>
+                      <Link to="#guide" onClick={closeMenu}>Guide</Link>
                     </li>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>Suggestions</Link>
+                      <Link to="#suggestions" onClick={closeMenu}>Suggestions</Link>
                     </li>
                   </ul>
-                  {!hideSignin &&
+                  {/* {!hideSignin &&
                     <ul
                       className="list-reset header-nav-right"
                     >
                       <li>
                         <Link to="#0" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Sign up</Link>
                       </li>
-                    </ul>}
+                    </ul>} */}
                 </div>
               </nav>
             </>}

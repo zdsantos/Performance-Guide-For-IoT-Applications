@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import GuideTables from './partials/GuideTables';
 import ReportPreview from './partials/ReportPreview';
-// import Tabs from 'react-bootstrap/Tabs'
-// import Tab from 'react-bootstrap/Tab'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const propTypes = {
@@ -31,6 +28,7 @@ const Guide = ({
     imageFill,
     ...props
 }) => {
+    const [selectedItem, setSelectedItem] = useState([]);
 
     const outerClasses = classNames(
         'guide',
@@ -57,6 +55,12 @@ const Guide = ({
     const sectionHeader = {
         title: "Guide"
     };
+
+    const newItem = (item) => {
+        selectedItem.push(item);
+        console.log(selectedItem);
+        setSelectedItem(selectedItem);
+    };
     
     return (
         <section
@@ -66,16 +70,16 @@ const Guide = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <div className={splitClasses}>
+                    <GuideTables newItem={newItem} />
+                    <ReportPreview />
+                    {/* <div className={splitClasses}>
                         <div className="split-item">
                             <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                                <GuideTables />
                             </div>
                             <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                                <ReportPreview />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

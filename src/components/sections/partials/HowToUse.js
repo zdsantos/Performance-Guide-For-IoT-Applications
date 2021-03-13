@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
-import SectionHeader from './SectionHeader';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -40,15 +39,6 @@ const HowToUse = ({
         shadow && 'shadow'
     );
 
-    // const tilesClasses = classNames(
-    //     'tiles-wrap center-content',
-    //     pushLeft && 'push-left'
-    // );
-
-    const sectionHeader = {
-        title: "How To Use"
-    };
-    
     return (
         <section
             {...props}

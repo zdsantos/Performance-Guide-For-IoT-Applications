@@ -42,6 +42,7 @@ $color: (
 	primary-light:			get-color(primary, 2),
 	secondary:				get-color(secondary, 1),
 	secondary-light:		get-color(secondary, 2),
+	secondary-dark:			get-color(secondary, 3),
 	error:					get-color(alert, error),
 	warning:				get-color(alert, warning),
 	success:				get-color(alert, success),
@@ -86,6 +87,8 @@ $bg--color: (
 	code-inverse:			darken(get-color(dark, 1), 3%),
 	check-checked-inverse:	darken(get-color(dark, 1), 3%),
 	bg-primary:				get-color(primary, 2),
+	bg-primary-dark:		get-color(primary, 3),
+	bg-primary-light:		get-color(primary, 4),
 	bg-secondary:			get-color(secondary, 2),
 	bg-secondary-dark:		get-color(secondary, 3)
 );

@@ -1,11 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
-import SectionHeader from './SectionHeader';
-// import Tabs from 'react-bootstrap/Tabs'
-// import Tab from 'react-bootstrap/Tab'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import SectionHeader from '../partials/SectionHeader';
+import ButtonGroup from '../../elements/ButtonGroup';
+import Button from '../../elements/Button';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -16,7 +14,7 @@ const defaultProps = {
 }
 
 const ReportPreview = ({
-    data,
+    reportItens,
     className,
     topOuterDivider,
     bottomOuterDivider,
@@ -43,14 +41,27 @@ const ReportPreview = ({
         bottomDivider && 'has-bottom-divider'
     );
 
+    const sectionHeader = {
+        title: "Report"
+    };
+
     return (
         <section
             {...props}
             className={outerClasses}
         >
             <div className="container">
+                <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    Report Preview
+                    {/* <div className="container-xs">
+                        <div className="reveal-from-bottom" data-reveal-delay="600">
+                            <ButtonGroup>
+                                <Button tag="a" color="primary" wideMobile>
+                                    Download Report
+                                </Button>
+                            </ButtonGroup>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </section>

@@ -30,6 +30,10 @@
 		border: none;
 		margin-bottom: 0px;
 	}
+
+	.tab-panel-inner {
+		background: white;
+	}
 }
 
 @include media( '<=medium' ) {
