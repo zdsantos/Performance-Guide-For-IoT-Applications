@@ -48,7 +48,7 @@ const HowToUse = ({
                 <div className={innerClasses}>
                     <h3 className="header center-content">How To Use</h3>
                     <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet dui nec augue faucibus vulputate. Vestibulum sit amet nibh in augue eleifend sagittis. Nullam vitae nibh vitae urna commodo posuere. Vestibulum vehicula erat a diam vestibulum, sit amet consectetur dui posuere. Nunc imperdiet varius turpis. Nulla egestas sodales lobortis. Nulla ut scelerisque sem, ut pulvinar odio. Morbi a commodo orci. Vivamus eu tortor id ligula maximus congue.</p>
+                        <p>The artifact produced at the end of using this Wiki is a test plan according to the step-by-step to be followed.The sequence of steps to be used in the Wiki until this artifact is achieved is still under construction.  So far the sections abstract test cases, measurements and tool suggestions have been added, these are currently being filled in completely, the other sections are still being added.</p>
                     </div>
                 </div>
             </div>

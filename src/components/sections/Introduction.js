@@ -60,10 +60,10 @@ const Introduction = ({
 
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                <HowToUse id="how-to-use" shadow />
+                <About id="about" shadow />
               </div>
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                <About id="about" shadow />
+                <HowToUse id="how-to-use" shadow />
               </div>
             </div>
 

@@ -123,9 +123,9 @@ const Header = ({
                     <li>
                       <Link to="#guide" onClick={closeMenu}>Guide</Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to="#suggestions" onClick={closeMenu}>Suggestions</Link>
-                    </li>
+                    </li> */}
                   </ul>
                   {/* {!hideSignin &&
                     <ul

@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
-import SectionHeader from './SectionHeader';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -39,10 +38,6 @@ const About = ({
         bottomDivider && 'has-bottom-divider',
         shadow && 'shadow'
     );
-
-    const sectionHeader = {
-        title: "About"
-    };
     
     return (
         <section
@@ -53,7 +48,8 @@ const About = ({
                 <div className={innerClasses}>
                     <h3 className="header center-content">About</h3>
                     <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet dui nec augue faucibus vulputate. Vestibulum sit amet nibh in augue eleifend sagittis. Nullam vitae nibh vitae urna commodo posuere. Vestibulum vehicula erat a diam vestibulum, sit amet consectetur dui posuere. Nunc imperdiet varius turpis. Nulla egestas sodales lobortis. Nulla ut scelerisque sem, ut pulvinar odio. Morbi a commodo orci. Vivamus eu tortor id ligula maximus congue.</p>
+                        <p>This Wiki is under construction. The IoT Application Performance Testing Guide is composed of sections that seek to assist in conducting performance testing for Internet of Things.
+Through the selection of abstract test cases, metrics, tools, properties among other sections, this wiki will generate a customized test plan according to the selections made in each section.</p>
                     </div>
                 </div>
             </div>

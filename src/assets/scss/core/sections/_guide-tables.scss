@@ -23,12 +23,14 @@
 	}
 
 	.react-tabs__tab--selected {
-		background: color(primary);
+		background: color(secondary-dark);
+		color: color(high-contrast) !important;
 	}
 
 	.react-tabs__tab {
 		border: none;
 		margin-bottom: 0px;
+		color: color(secondary-dark);
 	}
 
 	.tab-panel-inner {

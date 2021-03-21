@@ -4,7 +4,7 @@
 		padding-top: $about--padding-t__mobile;
 		padding-bottom: $about--padding-b__mobile;
 		border-radius: 10px;
-		background-color: color(secondary-light);
+		background-color: color(primary);
 	}
 
 	.shadow {
@@ -18,11 +18,16 @@
 .about-inner {
 	.header {
 		margin-top: 5px;
+		color: color(high-contrast);
 	}
 
 	.content {
 		padding: 20px;
 		text-align: justify;
+
+		p {
+			color: color(high-contrast);
+		}
 	}
 }
 

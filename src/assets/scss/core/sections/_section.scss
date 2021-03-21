@@ -6,6 +6,7 @@
 
 .section-header {
 	padding-bottom: $section-header--padding__mobile;
+    margin-top: $section-header--margin__mobile;
 }
 
 @include media( '>medium' ) {
@@ -17,5 +18,6 @@
 
 	.section-header {
 		padding-bottom: $section-header--padding__desktop;
+        margin-top: $section-header--margin__desktop;
 	}
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
 import SectionHeader from '../partials/SectionHeader';
-import ButtonGroup from '../../elements/ButtonGroup';
-import Button from '../../elements/Button';
+// import ButtonGroup from '../../elements/ButtonGroup';
+// import Button from '../../elements/Button';
+
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -53,6 +54,7 @@ const ReportPreview = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
+                    <p>Under construction...</p>
                     {/* <div className="container-xs">
                         <div className="reveal-from-bottom" data-reveal-delay="600">
                             <ButtonGroup>

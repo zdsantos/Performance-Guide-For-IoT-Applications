@@ -119,6 +119,9 @@ p {
 	margin-top: 0;
 	margin-bottom: $spacing--shared-v;
 	color: color(mid-contrast-inverse);
+    @include font-family(base);
+	@include font-weight(base);
+	@include font-size(base);
 }
 
 dfn, cite, em, i {

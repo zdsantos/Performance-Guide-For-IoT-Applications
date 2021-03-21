@@ -15,7 +15,7 @@ const Home = () => {
       {/* <FeaturesTiles /> */}
       {/* <Testimonial topDivider /> */}
       <Guide id="guide" />
-      <Cta id="suggestions" split />
+      {/* <Cta id="suggestions" split /> */}
     </>
   );
 }

@@ -1,3 +1,9 @@
 class Report {
-    itens = [];
+    title = "";
+    
+    data = {
+        testCases = [],
+        metrics = [],
+        tools = []
+    }
 }

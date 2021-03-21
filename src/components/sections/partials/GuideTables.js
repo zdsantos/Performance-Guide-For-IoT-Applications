@@ -47,15 +47,15 @@ const GuideTables = ({
     );
 
     const renderGuideContentItem = (item) => {
-        return (<GuideContentItem data={item} addAction={addItem} bottomOuterDivider />)
+        return (<GuideContentItem key={item.name} data={item} addAction={addItem} bottomOuterDivider />)
     }
 
     const renderGuideCaracteristcTestCases = (item) => {
-        return (<GuideCaracteristcItem data={item} property="testCases" addAction={addItem} bottomOuterDivider />)
+        return (<GuideCaracteristcItem key={item.name} data={item} property="testCases" addAction={addItem} bottomOuterDivider />)
     }
 
     const renderGuideCaracteristcMetrics = (item) => {
-        return (<GuideCaracteristcItem data={item} property="metrics" addAction={addItem} bottomOuterDivider />)
+        return (<GuideCaracteristcItem key={item.name} data={item} property="metrics" addAction={addItem} bottomOuterDivider />)
     }
 
     const addItem = (item) => {
@@ -73,7 +73,8 @@ const GuideTables = ({
                         <TabList>
                             <Tab>Test Cases</Tab>
                             <Tab>Metrics</Tab>
-                            <Tab>Tools</Tab>
+                            <Tab>Suggested Tools</Tab>
+                            <Tab>More</Tab>
                         </TabList>
 
                         <TabPanel>
@@ -89,6 +90,11 @@ const GuideTables = ({
                         <TabPanel>
                             <ul className="tab-panel-inner">
                                 {tools.map(renderGuideContentItem)}
+                            </ul>
+                        </TabPanel>
+                        <TabPanel>
+                            <ul>
+                                <li>Under construction...</li>
                             </ul>
                         </TabPanel>
                     </Tabs>

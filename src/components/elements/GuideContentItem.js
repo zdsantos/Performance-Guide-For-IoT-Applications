@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from './Button';
 import Collapsible from 'react-collapsible';
+import 'katex/dist/katex.min.css';
+import Latex from 'react-latex';
 
 const propTypes = {
     data: PropTypes.object,
@@ -44,7 +46,7 @@ const GuideContentItem = ({
 }) => {
 
   const buildStepsListItem = (step) => {
-    return (<li>{step}</li>)
+    return (<li key={step}><Latex>{step}</Latex></li>)
   };
 
   const classes = classNames(
@@ -71,7 +73,7 @@ const GuideContentItem = ({
         </p>
         <p><span className="property-title">Post-Conditions:</span> {data.postConditions}</p>
         <div className="item-description">
-          <Button color="primary" onClick={() => addAction(data)}>Add</Button>
+          <Button color="secondary" wideMobile onClick={() => addAction(data)}>Add</Button>
         </div>
       </Collapsible>
       </li>

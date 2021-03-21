@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Collapsible from 'react-collapsible';
 import GuideContentItem from './GuideContentItem';
-import { map } from 'lodash';
 
 const propTypes = {
     data: PropTypes.object,
@@ -46,10 +45,6 @@ const GuideCaracteristcItem = ({
     bottomOuterDivider,
     ...props
 }) => {
-
-  const buildStepsListItem = (step) => {
-    return (<li>{step}</li>)
-  };
 
   const classes = classNames(
     'guide-caracteristic-item',
