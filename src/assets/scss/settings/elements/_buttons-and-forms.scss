@@ -18,12 +18,16 @@ $button--color: (
 $button--bg: (
 	button-light: 			get-color(light, 1),
 	button-light-hover: 	darken(get-color(light, 1), 5%),
+	button-light-click: 	darken(get-color(light, 1), 10%),
 	button-dark: 			get-color(dark, 2),
-	button-dark-hover: 		lighten(get-color(dark, 2), 2%),
+	button-dark-hover: 		lighten(get-color(dark, 2), 10%),
+	button-dark-click: 		lighten(get-color(dark, 2), 20%),
 	button-primary: 		get-color(primary, 1),
-	button-primary-hover: 	lighten(get-color(primary, 1), 2%),
+	button-primary-hover: 	lighten(get-color(primary, 1), 10%),
+	button-primary-click: 	lighten(get-color(primary, 1), 20%),
 	button-secondary: 		get-color(secondary, 1),
-	button-secondary-hover:	lighten(get-color(secondary, 1), 2%),
+	button-secondary-hover:	lighten(get-color(secondary, 1), 10%),
+	button-secondary-click:	lighten(get-color(secondary, 1), 20%),
 	button-disabled: 		get-color(light, 3)
 );
 

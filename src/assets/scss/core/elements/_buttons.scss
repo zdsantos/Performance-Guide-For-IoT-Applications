@@ -18,10 +18,33 @@
     letter-spacing: inherit;
     white-space: nowrap;
 	transition: background .15s ease;
+	position: relative;
+	overflow: hidden;
 
     &:active {
         outline: 0;
     }
+
+	&:after {
+		content: "";
+		background: color-bg(button-light-click);
+		display: block;
+		position: absolute;
+		border-radius: 50%;
+		padding-top: 300%;
+		padding-left: 350%;
+		margin-left: -20px !important;
+		margin-top: -120%;
+		opacity: 0;
+		transition: all 0.5s
+	}
+	  
+	&:active:after {
+		padding: 0;
+		margin: 0;
+		opacity: 1;
+		transition: 0s
+	}
 
 	&:hover {
 		background-color: color-bg(button-light-hover);
@@ -82,6 +105,10 @@
 		border-color: color-border(button-dark-hover);
     }
 
+	&:after {
+		background: color-bg(button-dark-click);
+	}
+
 	&.is-loading {
 
 		&::after {
@@ -100,6 +127,10 @@
 		border-color: color-border(button-primary-hover);
     }
 
+	&:after {
+		background: color-bg(button-primary-click);
+	}
+
 	&.is-loading {
 
 		&::after {
@@ -117,6 +148,10 @@
         background-color: color-bg(button-secondary-hover);
 		border-color: color-border(button-secondary-hover);
     }
+
+	&:after {
+		background: color-bg(button-secondary-click);
+	}
 
 	&.is-loading {
 
