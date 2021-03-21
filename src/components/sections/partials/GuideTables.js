@@ -71,7 +71,7 @@ const GuideTables = ({
                 <div className={innerClasses}>
                     <Tabs>
                         <TabList>
-                            <Tab>Test Cases</Tab>
+                            <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
                             <Tab>Suggested Tools</Tab>
                             <Tab>More</Tab>
