@@ -5,6 +5,7 @@ import Button from './Button';
 import Collapsible from 'react-collapsible';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 
 const propTypes = {
     data: PropTypes.object,
@@ -34,6 +35,7 @@ const GuideContentItem = ({
     className,
     data,
     addAction,
+    removeAction,
     tag,
     color,
     size,
@@ -45,9 +47,20 @@ const GuideContentItem = ({
     ...props
 }) => {
 
+  const [selected, setSelected] = React.useState(data.selected);
+  
   const buildStepsListItem = (step) => {
     return (<li key={step}><Latex>{step}</Latex></li>)
   };
+
+  const add = (item) => {
+    setSelected(!selected);
+    addAction(item);
+  }
+  const remove = (item) => {
+    setSelected(!selected);
+    removeAction(item);
+  }
 
   const classes = classNames(
     'guide-content-item',
@@ -56,7 +69,14 @@ const GuideContentItem = ({
     bottomOuterDivider && 'has-bottom-divider'
   );
 
-  if (data.type === "testCase") {
+  let actionButton;
+  if (!selected) {
+    actionButton = <Button color="secondary" wideMobile onClick={() => add(data)}><FaPlus /></Button>;
+  } else {
+    actionButton = <Button color="danger" wideMobile onClick={() => remove(data)}><FaTimes /></Button>;
+  }
+
+  if (data.type === "testCases") {
     return (
       <li
         {...props}
@@ -73,12 +93,12 @@ const GuideContentItem = ({
         </p>
         <p><span className="property-title">Post-Conditions:</span> {data.postConditions}</p>
         <div className="item-description">
-          <Button color="secondary" wideMobile onClick={() => addAction(data)}>Add</Button>
+          {actionButton}
         </div>
       </Collapsible>
       </li>
     );
-  } else if (data.type === "metric") {
+  } else if (data.type === "metrics") {
     return (
       <li
         {...props}
@@ -95,7 +115,22 @@ const GuideContentItem = ({
         </p>
         <p><span className="property-title">Reference:</span> {data.reference}</p>
         <div className="item-description">
-          <Button color="primary" onClick={() => addAction(data)}>Add</Button>
+          {actionButton}
+        </div>
+      </Collapsible>
+      </li>
+    );
+  } else if (data.type === "properties") {
+    return (
+      <li
+        {...props}
+        className={classes}
+        key={data.id}
+      >
+      <Collapsible trigger={data.title}>
+        <p><span className="property-title">Description:</span> {data.description}</p>
+        <div className="item-description">
+          {actionButton}
         </div>
       </Collapsible>
       </li>
@@ -112,7 +147,7 @@ const GuideContentItem = ({
         <p><span className="property-title">License:</span> {data.license}</p>
         <p><span className="property-title">Link:</span> <a href={data.link} target="blank">{data.link}</a></p>
         <div className="item-description">
-          <Button color="primary" onClick={() => addAction(data)}>Add</Button>
+          {actionButton}
         </div>
       </Collapsible>
       </li>

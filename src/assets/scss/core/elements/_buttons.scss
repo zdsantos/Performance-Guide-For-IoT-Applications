@@ -161,6 +161,28 @@
 	}
 }
 
+.button-danger {
+	color: color(button-error);
+    background-color: color-bg(button-error);
+	border-color: color-border(button-error);
+
+    &:hover {
+        background-color: color-bg(button-error-hover);
+		border-color: color-border(button-error-hover);
+    }
+
+	&:after {
+		background: color-bg(button-error-click);
+	}
+
+	&.is-loading {
+
+		&::after {
+			border-color: color(button-error);
+		}
+	}
+}
+
 .button-block {
     display: flex;
 	width: 100%;

@@ -35,6 +35,7 @@ const GuideCaracteristcItem = ({
     data,
     property,
     addAction,
+    removeAction,
     tag,
     color,
     size,
@@ -54,7 +55,7 @@ const GuideCaracteristcItem = ({
   );
 
   const renderGuideContentItem = (item) => {
-    return (<GuideContentItem data={item} addAction={addAction} bottomOuterDivider />)
+    return (<GuideContentItem data={item} addAction={addAction} removeAction={removeAction} bottomOuterDivider />)
   }
 
   return (
@@ -66,7 +67,7 @@ const GuideCaracteristcItem = ({
       <Collapsible trigger={`${data.name}`}>
         <ul>
           {data[property].map(renderGuideContentItem)}
-        </ul>    
+        </ul>
       </Collapsible>
     </li>
   );

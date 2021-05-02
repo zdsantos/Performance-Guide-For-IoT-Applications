@@ -3,24 +3,21 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { SectionTilesProps } from '../../../utils/SectionProps';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { guideContent, tools } from '../../../models/guide-content-base';
 import 'react-tabs/style/react-tabs.css';
 import GuideContentItem from '../../elements/GuideContentItem';
 import GuideCaracteristcItem from '../../elements/GuideCaracteristcItem';
+import ReportService from '../../../services/reportService';
 
 const propTypes = {
-    newItem: PropTypes.func,
     ...SectionTilesProps.types
 }
 
 const defaultProps = {
-    newItem: () => {},
     ...SectionTilesProps.defaults
 }
 
 const GuideTables = ({
     className,
-    newItem,
     topOuterDivider,
     bottomOuterDivider,
     topDivider,
@@ -47,19 +44,30 @@ const GuideTables = ({
     );
 
     const renderGuideContentItem = (item) => {
-        return (<GuideContentItem key={item.name} data={item} addAction={addItem} bottomOuterDivider />)
+        return (<GuideContentItem key={item.id} data={item} addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
     }
 
     const renderGuideCaracteristcTestCases = (item) => {
-        return (<GuideCaracteristcItem key={item.name} data={item} property="testCases" addAction={addItem} bottomOuterDivider />)
+        return (<GuideCaracteristcItem key={item.id} data={item} property="testCases" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
     }
 
     const renderGuideCaracteristcMetrics = (item) => {
-        return (<GuideCaracteristcItem key={item.name} data={item} property="metrics" addAction={addItem} bottomOuterDivider />)
+        return (<GuideCaracteristcItem key={item.id} data={item} property="metrics" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
+    }
+
+    const renderGuideCaracteristcProperties = (item) => {
+        return (<GuideCaracteristcItem key={item.id} data={item} property="properties" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
     }
 
     const addItem = (item) => {
-        newItem(item);
+        let dependents = ReportService.addItem(item);
+        dependents.forEach(d => {
+           addItem(d);
+        });
+    }
+
+    const removeItem = (item) => {
+        let dependents = ReportService.removeItem(item);
     }
 
     return (
@@ -71,30 +79,30 @@ const GuideTables = ({
                 <div className={innerClasses}>
                     <Tabs>
                         <TabList>
+                            <Tab>Properties</Tab>
                             <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
                             <Tab>Suggested Tools</Tab>
-                            <Tab>More</Tab>
                         </TabList>
 
-                        <TabPanel>
+                        <TabPanel> {/* Properties */}
                             <ul className="tab-panel-inner">
-                                {guideContent.map(renderGuideCaracteristcTestCases)}
+                                {ReportService.getAllItens().map(renderGuideCaracteristcProperties)}
                             </ul>
                         </TabPanel>
-                        <TabPanel>
+                        <TabPanel> {/* Abstract Test Cases */}
                             <ul className="tab-panel-inner">
-                                {guideContent.map(renderGuideCaracteristcMetrics)}
+                                {ReportService.getAllItens().map(renderGuideCaracteristcTestCases)}
                             </ul>
                         </TabPanel>
-                        <TabPanel>
+                        <TabPanel> {/* Metrics */}
                             <ul className="tab-panel-inner">
-                                {tools.map(renderGuideContentItem)}
+                                {ReportService.getAllItens().map(renderGuideCaracteristcMetrics)}
                             </ul>
                         </TabPanel>
-                        <TabPanel>
-                            <ul>
-                                <li>Under construction...</li>
+                        <TabPanel> {/* Suggested Tools */}
+                            <ul className="tab-panel-inner">
+                                {ReportService.getTools().map(renderGuideContentItem)}
                             </ul>
                         </TabPanel>
                     </Tabs>

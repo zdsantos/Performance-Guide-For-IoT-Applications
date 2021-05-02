@@ -56,12 +56,6 @@ const Guide = ({
         title: "Guide"
     };
 
-    const newItem = (item) => {
-        selectedItem.push(item);
-        console.log(selectedItem);
-        setSelectedItem(selectedItem);
-    };
-    
     return (
         <section
             {...props}
@@ -70,7 +64,7 @@ const Guide = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <GuideTables newItem={newItem} />
+                    <GuideTables />
                     <ReportPreview />
                     {/* <div className={splitClasses}>
                         <div className="split-item">
