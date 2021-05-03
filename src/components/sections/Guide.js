@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
@@ -28,8 +28,6 @@ const Guide = ({
     imageFill,
     ...props
 }) => {
-    const [selectedItem, setSelectedItem] = useState([]);
-
     const outerClasses = classNames(
         'guide',
         topOuterDivider && 'has-top-divider',

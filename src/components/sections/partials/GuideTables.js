@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { SectionTilesProps } from '../../../utils/SectionProps';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -67,7 +66,7 @@ const GuideTables = ({
     }
 
     const removeItem = (item) => {
-        let dependents = ReportService.removeItem(item);
+        ReportService.removeItem(item);
     }
 
     return (

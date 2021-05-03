@@ -244,7 +244,6 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                characteristics: "performance-time_behavior",
                 id: "M04",
                 title: "Minimum Waiting Time",
                 characteristics: "time_behavior",

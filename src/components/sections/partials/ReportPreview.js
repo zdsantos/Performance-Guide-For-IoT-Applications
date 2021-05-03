@@ -2,9 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
 import SectionHeader from '../partials/SectionHeader';
-// import ButtonGroup from '../../elements/ButtonGroup';
-// import Button from '../../elements/Button';
-
+import ButtonGroup from '../../elements/ButtonGroup';
+import Button from '../../elements/Button';
+import ReactToPrint from "react-to-print";
+import ReportService from '../../../services/reportService';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -26,9 +27,11 @@ const ReportPreview = ({
     pushLeft,
     ...props
 }) => {
+    const [reportGenerated, setReportGenerated] = React.useState(false);
+    const [reportComponent, setReportComponent] = React.useState(<div>empty</div>);
 
     const outerClasses = classNames(
-        'report-review',
+        'report-preview',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
         hasBgColor && 'has-bg-color',
@@ -37,7 +40,7 @@ const ReportPreview = ({
     );
 
     const innerClasses = classNames(
-        'report-review-inner section-inner',
+        'report-preview-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
@@ -46,24 +49,40 @@ const ReportPreview = ({
         title: "Report"
     };
 
+    var reportComponentRef = "";
+
+    const generateReport = () => {
+        setReportComponent(ReportService.generateReport())
+        setReportGenerated(true);
+    }
+
     return (
         <section
             {...props}
             className={outerClasses}
         >
             <div className="container">
-                <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <p>Under construction...</p>
-                    {/* <div className="container-xs">
-                        <div className="reveal-from-bottom" data-reveal-delay="600">
-                            <ButtonGroup>
-                                <Button tag="a" color="primary" wideMobile>
-                                    Download Report
-                                </Button>
-                            </ButtonGroup>
+                    <SectionHeader data={sectionHeader} className="center-content" />
+                    <div class="content">
+                        <div className="container-xs">
+                            <div className="reveal-from-bottom" data-reveal-delay="600">
+                                <ButtonGroup>
+                                    <Button color="primary" wideMobile onClick={() => generateReport()}>Generate Report</Button>
+                                </ButtonGroup>
+                            </div>
+                            <div className="report-content m-32" ref={(el) => (reportComponentRef = el)} hidden={!reportGenerated}>{reportComponent}</div>
+                            <div className="reveal-from-bottom" data-reveal-delay="600" hidden={!reportGenerated}>
+                                <ButtonGroup>
+                                    <ReactToPrint
+                                        trigger={() => <Button color="secondary" wideMobile>Print report!</Button>}
+                                        content={() => reportComponentRef}
+                                        documentTitle="test_plan"
+                                    />
+                                </ButtonGroup>
+                            </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </section>
