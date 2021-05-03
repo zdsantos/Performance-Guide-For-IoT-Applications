@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import Input from '../elements/Input';
+import Button from '../elements/Button';
+import ButtonGroup from '../elements/ButtonGroup';
+import { useForm } from 'react-hook-form';
 
 const propTypes = {
   ...SectionProps.types,
@@ -25,6 +28,10 @@ const Cta = ({
   split,
   ...props
 }) => {
+  const { register, handleSubmit, watch } = useForm();
+  // const [name, setName] = React.useState("");
+  // const [email, setEmail] = React.useState("");
+  // const [message, setMessage] = React.useState("");
 
   const outerClasses = classNames(
     'cta section center-content-mobile reveal-from-bottom',
@@ -42,6 +49,13 @@ const Cta = ({
     split && 'cta-split'
   );  
 
+  const onSubmit = data => {
+    console.log(data);
+  }
+
+  const message = watch('message') || "";
+  const messageCharsLeft = 1500 - message.length;
+
   return (
     <section
       {...props}
@@ -51,18 +65,15 @@ const Cta = ({
         <div
           className={innerClasses}
         >
-          <div className="cta-slogan">
-            <h3 className="m-0">
-              For previewing layouts and visual?
-              </h3>
-          </div>
-          <div className="cta-action">
-            <Input id="newsletter" type="email" label="Subscribe" labelHidden hasIcon="right" placeholder="Your best email">
-              <svg width="16" height="12" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 5H1c-.6 0-1 .4-1 1s.4 1 1 1h8v5l7-6-7-6v5z" fill="#376DF9" />
-              </svg>
-            </Input>
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input className="mb-24" name="name" placeholder="Name" {...register("name")}></Input>
+            <Input className="mb-24" name="email" type="email" placeholder="Email" {...register("email")}></Input>
+            <Input className="mb-24" name="message" type="textarea" placeholder="Your message" rows="5" {...register("message")}></Input>
+            <div><span>{messageCharsLeft}</span></div>
+            <ButtonGroup>
+              <Button type="submit" color="secondary" wideMobile>Send</Button>
+            </ButtonGroup>
+          </form>
         </div>
       </div>
     </section>

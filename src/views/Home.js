@@ -3,6 +3,7 @@ import React from 'react';
 import Hero from '../components/sections/Hero';
 import Introduction from '../components/sections/Introduction';
 import Guide from '../components/sections/Guide';
+import Cta from '../components/sections/Cta';
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
       {/* <FeaturesTiles /> */}
       {/* <Testimonial topDivider /> */}
       <Guide id="guide" />
-      {/* <Cta id="suggestions" split /> */}
+      <Cta id="suggestions" />
     </>
   );
 }

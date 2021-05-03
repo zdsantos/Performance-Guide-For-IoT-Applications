@@ -113,7 +113,6 @@ const GuideContentItem = ({
             {data.measure.map(buildStepsListItem)}
           </ul>
         </p>
-        <p><span className="property-title">Reference:</span> {data.reference}</p>
         <div className="item-description">
           {actionButton}
         </div>

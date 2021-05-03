@@ -55,7 +55,7 @@ const GuideCaracteristcItem = ({
   );
 
   const renderGuideContentItem = (item) => {
-    return (<GuideContentItem data={item} addAction={addAction} removeAction={removeAction} bottomOuterDivider />)
+    return (<GuideContentItem key={item.id} data={item} addAction={addAction} removeAction={removeAction} bottomOuterDivider />)
   }
 
   return (

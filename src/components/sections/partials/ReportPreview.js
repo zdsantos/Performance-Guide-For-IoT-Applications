@@ -64,7 +64,7 @@ const ReportPreview = ({
             <div className="container">
                 <div className={innerClasses}>
                     <SectionHeader data={sectionHeader} className="center-content" />
-                    <div class="content">
+                    <div className="content">
                         <div className="container-xs">
                             <div className="reveal-from-bottom" data-reveal-delay="600">
                                 <ButtonGroup>
