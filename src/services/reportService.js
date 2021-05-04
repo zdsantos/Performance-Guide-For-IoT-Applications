@@ -130,7 +130,6 @@ class ReportService {
                         {data.measure.map(this._buildStepsListItem)}
                     </ul>
                     </p>
-                    <p><span class="property-title">Reference:</span> {data.reference}</p>
                 </div>
             );
         } else if (data.type === "properties") {

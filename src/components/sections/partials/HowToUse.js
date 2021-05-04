@@ -48,7 +48,7 @@ const HowToUse = ({
                 <div className={innerClasses}>
                     <h3 className="header center-content">How To Use</h3>
                     <div className="content">
-                        <p>The artifact produced at the end of using this Wiki is a test plan according to the step-by-step to be followed.The sequence of steps to be used in the Wiki until this artifact is achieved is still under construction.  So far the sections abstract test cases, measurements and tool suggestions have been added, these are currently being filled in completely, the other sections are still being added.</p>
+                        <p>The guide aims to assist in performance testing of IoT applications in the context where there are sensors and actuators and an application that performs the management of these smart objects over the network. There are 4 steps to the test plan at the end, the initial 3 being mandatory and the last one optional. The first step is the selection of properties, in which properties and their definitions are presented, these properties characterize each of the performance subcharacteristics. After the selection of properties, the next step is the selection of abstract test cases that will depend on which subcharacteristics were contemplated in the selection of properties, the third step is the selection of metrics that will depend on which properties were selected and finally the suggestion of tools that can help in the collection of selected metrics.</p>
                     </div>
                 </div>
             </div>

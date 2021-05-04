@@ -48,8 +48,7 @@ const About = ({
                 <div className={innerClasses}>
                     <h3 className="header center-content">About</h3>
                     <div className="content">
-                        <p>This Wiki is under construction. The IoT Application Performance Testing Guide is composed of sections that seek to assist in conducting performance testing for Internet of Things.
-Through the selection of abstract test cases, metrics, tools, properties among other sections, this wiki will generate a customized test plan according to the selections made in each section.</p>
+                        <p>In this wiki a performance testing guide for IoT is provided. The guide divides performance into 3 subcharacteristics, based on ISO 25010, namely, Temporal Behavior - is the level to which the response and processing time and transfer rates of a product or system, when performing its functions, meet the requirements, Resource Utilization - is the degree to which the quantities and types of resources used by a product or system, when performing their functions, meet the requirements, and Capacity - it is the degree to which the maximum limits of a product or system parameter meet the requirements. The guide aims to assist in performance testing of IoT applications by providing at the end of the process a test plan template.</p>
                     </div>
                 </div>
             </div>
