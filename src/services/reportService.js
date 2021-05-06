@@ -24,7 +24,7 @@ class ReportService {
         console.log('ReportService', `add: ${item.id}`)
 
         // check dependents, if active the trigged send the list
-        return this._checkDependentsTrigger();
+        this._checkDependentsTrigger(item);
     }
 
     removeItem(item) {
@@ -37,7 +37,7 @@ class ReportService {
         var selectedItem = caracteristic[item.type].find(i => i.id === item.id);
         
         selectedItem.selected = false;
-        console.log('ReportService', `remove: ${item.id}`)
+        console.log('ReportService', `remove: ${item.id}`);
     }
 
     getAllItens() {
@@ -184,8 +184,27 @@ class ReportService {
         console.log('ReportService', `remove: ${tool.id}`)
     }
 
-    _checkDependentsTrigger() {
-        return [];
+    _checkDependentsTrigger(item) {
+        if (item.dependents && item.dependents.length > 0) {
+            let dependents = item.dependents.map(id => this.getItemById(id));
+            dependents.forEach(d => this.addItem(d));
+        }
+    }
+
+    getItemById(id) {
+        var currentList = this._Data;
+
+        while(currentList.length !== 0) {
+            let item = currentList[0];
+
+            if (item.id === id) return item;
+
+            if (item.properties && item.properties.length > 0) currentList = currentList.concat(item.properties);
+            if (item.testCases && item.testCases.length > 0) currentList = currentList.concat(item.testCases);
+            if (item.metrics && item.metrics.length > 0) currentList = currentList.concat(item.metrics);
+
+            currentList.shift();
+        }
     }
 }
 

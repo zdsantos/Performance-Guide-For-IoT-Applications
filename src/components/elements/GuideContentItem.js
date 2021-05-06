@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from './Button';
@@ -47,7 +47,7 @@ const GuideContentItem = ({
     ...props
 }) => {
 
-  const [selected, setSelected] = React.useState(data.selected);
+  const [selected, setSelected] = useState(data.selected);
   
   const buildStepsListItem = (step) => {
     return (<li key={step}><Latex>{step}</Latex></li>)
@@ -61,6 +61,13 @@ const GuideContentItem = ({
     setSelected(!selected);
     removeAction(item);
   }
+
+  // const updateHook = () => {
+  //   setSelected(data.selected);
+  //   setSelectedClass(data.selected ? "selected" : "")
+  // };
+
+  // data["updateHook"] = updateHook;
 
   const classes = classNames(
     'guide-content-item',
@@ -83,7 +90,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible trigger={`${data.idLong} - ${data.title}`}>
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={`${data.idLong} - ${data.title}`}>
         <p><span className="property-title">Test Evironment:</span> {data.testEnvironment}</p>
         <p><span className="property-title">Pré-Conditions:</span> {data.preConditions}</p>
         <p><span className="property-title">Step-by-step:</span>
@@ -105,7 +112,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible trigger={`${data.id} - ${data.title}`}>
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={`${data.id} - ${data.title}`}>
         <p><span className="property-title">Purpose:</span> {data.purpose}</p>
         <p><span className="property-title">Method:</span> {data.method}</p>
         <p><span className="property-title">Measure:</span>
@@ -126,7 +133,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible trigger={data.title}>
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
         <p><span className="property-title">Description:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
@@ -141,7 +148,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible trigger={data.title}>
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
         <p><span className="property-title">Description:</span> {data.description}</p>
         <p><span className="property-title">License:</span> {data.license}</p>
         <p><span className="property-title">Link:</span> <a href={data.link} target="blank">{data.link}</a></p>

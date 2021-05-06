@@ -59,10 +59,10 @@ const GuideTables = ({
     }
 
     const addItem = (item) => {
-        let dependents = ReportService.addItem(item);
-        dependents.forEach(d => {
-           addItem(d);
-        });
+        ReportService.addItem(item);
+        // dependents.forEach(d => {
+        //    addItem(d);
+        // });
     }
 
     const removeItem = (item) => {
@@ -78,23 +78,33 @@ const GuideTables = ({
                 <div className={innerClasses}>
                     <Tabs>
                         <TabList>
+                            <Tab>Caracteristcs</Tab>
+                            <Tab>Sub Caracteristcs</Tab>
                             <Tab>Properties</Tab>
                             <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
                             <Tab>Suggested Tools</Tab>
                         </TabList>
 
+                        <TabPanel>
+                            <p>Caracteristcs</p>
+                        </TabPanel>
+                        <TabPanel>
+                            <p>Sub Caracteristcs</p>
+                        </TabPanel>
                         <TabPanel> {/* Properties */}
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideCaracteristcProperties)}
                             </ul>
                         </TabPanel>
                         <TabPanel> {/* Abstract Test Cases */}
+                            <p className="alert">It is recommended that test cases that have been preselected by properties remain selected. Otherwise, test completeness is not guaranteed.</p>
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideCaracteristcTestCases)}
                             </ul>
                         </TabPanel>
                         <TabPanel> {/* Metrics */}
+                        <p className="alert">It is recommended that metrics that have been preselected by properties remain selected. Otherwise, measurement completeness is not guaranteed.</p>
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideCaracteristcMetrics)}
                             </ul>

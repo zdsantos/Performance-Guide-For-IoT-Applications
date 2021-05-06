@@ -9,7 +9,8 @@ const guideContent = [
                 id: "P1",
                 title: "Dispatch Time",
                 characteristics: "time_behavior",
-                description: "Time until the task is ready for execution."
+                description: "Time until the task is ready for execution.",
+                dependents: ['M01','TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'TC12', 'TC13', 'TC14']
             },
             {
                 selected: false,
@@ -17,7 +18,8 @@ const guideContent = [
                 id: "P2",
                 title: "Execution Time",
                 characteristics: "time_behavior",
-                description: "The time required until a task is completed."
+                description: "The time required until a task is completed.",
+                dependents: ['TC03','M01']
             },
             {
                 selected: false,
@@ -289,7 +291,6 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                characteristics: "performance-time_behavior",
                 id: "M04",
                 title: "Minimum Waiting Time",
                 characteristics: "time_behavior",
@@ -304,7 +305,6 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                characteristics: "performance-time_behavior",
                 id: "M05",
                 title: "Reconnection Time",
                 characteristics: "time_behavior",
@@ -867,7 +867,7 @@ const guideContent = [
                 ],
                 postConditions: "The requested data has been sent"
             },
-          ],
+        ],
         metrics: [
             {
                 selected: false,
@@ -887,7 +887,6 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                characteristics: "performance-time_behavior",
                 id: "M22",
                 title: "Maximum Number of Simultaneous users",
                 characteristics: "time_behavior",
@@ -899,7 +898,7 @@ const guideContent = [
                     "$U$ = quantities of simultaneous users$"
                 ]
             }
-          ]
+        ]
     }
 ];
 

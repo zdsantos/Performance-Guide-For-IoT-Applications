@@ -18,6 +18,16 @@
 		border: 2px color(primary) solid;
 	}
 
+	.alert {
+    	border: 2px #454BBA solid;
+		margin-bottom: -2px;
+		padding: 5px 16px;
+		background-color: white;
+		color: red;
+		font-weight: 700;
+		font-size: 14px;
+	}
+
 	.react-tabs__tab-list {
 		border: none;
 	}

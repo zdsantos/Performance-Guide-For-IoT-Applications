@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Collapsible from 'react-collapsible';
 import GuideContentItem from './GuideContentItem';
+import { propertyOf } from 'lodash';
 
 const propTypes = {
     data: PropTypes.object,
@@ -46,6 +47,7 @@ const GuideCaracteristcItem = ({
     bottomOuterDivider,
     ...props
 }) => {
+  const [selectedCount, setSelectedCount] = useState(data[property].filter(i => i.selected).length);
 
   const classes = classNames(
     'guide-caracteristic-item',
@@ -55,8 +57,20 @@ const GuideCaracteristcItem = ({
   );
 
   const renderGuideContentItem = (item) => {
-    return (<GuideContentItem key={item.id} data={item} addAction={addAction} removeAction={removeAction} bottomOuterDivider />)
+    return (<GuideContentItem key={item.id} data={item} addAction={updateCountAdd} removeAction={updateCountRemove} bottomOuterDivider />)
   }
+
+  const updateCountAdd = (item) => {
+    addAction(item);
+    let count = data[property].filter(i => i.selected).length;
+    setSelectedCount(count);
+  };
+
+  const updateCountRemove = (item) => {
+    removeAction(item);
+    let count = data[property].filter(i => i.selected).length;
+    setSelectedCount(count);
+  };
 
   return (
     <li
@@ -64,7 +78,7 @@ const GuideCaracteristcItem = ({
       className={classes}
       key={data.name}
     >
-      <Collapsible trigger={`${data.name}`}>
+      <Collapsible trigger={`${data.name} - (${selectedCount}/${data[property].length})`}>
         <ul>
           {data[property].map(renderGuideContentItem)}
         </ul>
