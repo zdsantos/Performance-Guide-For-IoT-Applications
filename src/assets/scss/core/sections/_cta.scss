@@ -8,6 +8,14 @@
 	.button-group {
 		justify-content: center;
 	}
+
+	.contactInfo {
+		
+		p {
+			color: color(high-contrast);
+		}
+
+	}
 }
 
 @include media( '>medium' ) {

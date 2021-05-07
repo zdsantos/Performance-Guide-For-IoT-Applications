@@ -100,6 +100,9 @@ const Cta = ({
                 <div
                     className={innerClasses}
                 >
+                    <div className="contactInfo">
+                        <p>If you have any suggestions or any doubts, please feel free to message us.</p>
+                    </div>
                     <form id="contactForm" onSubmit={onSubmit}>
                         <Input className="mb-24" name="name" placeholder="Name" {...register("name", { required: true })}></Input>
                         <Input className="mb-24" name="email" type="email" placeholder="Email" {...register("email")}></Input>
