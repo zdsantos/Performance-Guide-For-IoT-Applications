@@ -54,21 +54,15 @@ const GuideContentItem = ({
   };
 
   const add = (item) => {
-    setSelected(!selected);
-    addAction(item);
+    let resultOk = addAction(item);
+
+    if (resultOk) setSelected(!selected);
   }
   const remove = (item) => {
-    setSelected(!selected);
     removeAction(item);
+    setSelected(!selected);
   }
-
-  // const updateHook = () => {
-  //   setSelected(data.selected);
-  //   setSelectedClass(data.selected ? "selected" : "")
-  // };
-
-  // data["updateHook"] = updateHook;
-
+  
   const classes = classNames(
     'guide-content-item',
     className,
@@ -141,7 +135,37 @@ const GuideContentItem = ({
       </Collapsible>
       </li>
     );
-  } else {
+  } else if (data.type === "definitions") {
+    return (
+      <li
+        {...props}
+        className={classes}
+        key={data.id}
+      >
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
+        <p><span className="property-title">Description:</span> {data.description}</p>
+        <div className="item-description">
+          {actionButton}
+        </div>
+      </Collapsible>
+      </li>
+    );
+  } else if (data.type === "subcharacteristics") {
+    return (
+      <li
+        {...props}
+        className={classes}
+        key={data.id}
+      >
+      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.name}>
+        <p><span className="property-title">Description:</span> {data.description}</p>
+        <div className="item-description">
+          {actionButton}
+        </div>
+      </Collapsible>
+      </li>
+    );
+  } else if (data.type === "tools") {
     return (
       <li
         {...props}
@@ -156,6 +180,17 @@ const GuideContentItem = ({
           {actionButton}
         </div>
       </Collapsible>
+      </li>
+    );
+  } else {
+    console.log('Unexpected item:', data);
+    return (
+      <li
+        {...props}
+        className={classes}
+        key={data.id}
+      >
+      <p>Unexpected</p>
       </li>
     );
   }

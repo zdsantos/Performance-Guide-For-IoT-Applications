@@ -1,0 +1,33 @@
+.slider {
+    .section-inner {
+        position: relative; // To always display inner elements above pseudo decorative stuff
+        padding-top: $slider--padding-t__mobile;
+        padding-bottom: $slider--padding-b__mobile;
+    }
+    
+    .section-header {
+        padding-bottom: $section-header--padding__mobile;
+        margin-top: $section-header--margin__mobile;
+    }
+
+    .slider-inner {
+        
+        img {
+            max-height: $slider--height;
+        }
+    }
+    
+}
+
+@include media( '>medium' ) {
+    
+    .section-inner {
+        padding-top: $slider--inner-padding-v_desktop;
+        padding-bottom: $slider--inner-padding-v_desktop;
+    }
+
+    .section-header {
+        padding-bottom: $section-header--padding__desktop;
+        margin-top: $section-header--margin__desktop;
+    }
+}

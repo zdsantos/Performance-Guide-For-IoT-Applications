@@ -22,6 +22,7 @@
     }
 
     .Collapsible {
+        background: color-bg(bg-primary);
         padding-top: 16px;
         border-radius: 10px;
 
@@ -35,6 +36,14 @@
             background: white;
             margin-top: 16px;
             padding: 0px 12px;
+        }
+        
+        .selected {
+            background: color-bg(bg-secondary) !important;
+        }
+
+        .notselected {
+            background: color-bg(bg-primary-light) !important;
         }
     }
 

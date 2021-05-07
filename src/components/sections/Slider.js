@@ -2,11 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
-import GuideTables from './partials/GuideTables';
-import ReportPreview from './partials/ReportPreview';
-import 'react-tabs/style/react-tabs.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+var Carousel = require('react-responsive-carousel').Carousel;
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -16,7 +13,7 @@ const defaultProps = {
     ...SectionTilesProps.defaults
 }
 
-const Guide = ({
+const Slider = ({
     className,
     topOuterDivider,
     bottomOuterDivider,
@@ -31,7 +28,7 @@ const Guide = ({
     ...props
 }) => {
     const outerClasses = classNames(
-        'guide',
+        'slider',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
         hasBgColor && 'has-bg-color',
@@ -40,7 +37,7 @@ const Guide = ({
     );
 
     const innerClasses = classNames(
-        'guide-inner section-inner',
+        'slider-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
@@ -53,7 +50,7 @@ const Guide = ({
     // );
 
     const sectionHeader = {
-        title: "Guide"
+        title: "How to Use"
     };
 
     return (
@@ -64,24 +61,27 @@ const Guide = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <GuideTables />
-                    <ReportPreview />
-                    {/* <div className={splitClasses}>
-                        <div className="split-item">
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
+                    <Carousel showArrows={true}>
+                        <div>
+                            <img src={require('../../assets/images/features-split-image-01.png')} />
+                            <p className="legend">Legend 1</p>
                         </div>
-                    </div> */}
-                    <ToastContainer />
+                        <div>
+                            <img src={require('../../assets/images/features-split-image-02.png')} />
+                            <p className="legend">Legend 2</p>
+                        </div>
+                        <div>
+                            <img src={require('../../assets/images/features-split-image-03.png')} />
+                            <p className="legend">Legend 3</p>
+                        </div>
+                    </Carousel>
                 </div>
             </div>
         </section>
     );
 };
 
-Guide.propsTypes = propTypes;
-Guide.defaultProps = defaultProps;
+Slider.propsTypes = propTypes;
+Slider.defaultProps = defaultProps;
 
-export default Guide;
+export default Slider;

@@ -59,7 +59,7 @@ const GuideTables = ({
     }
 
     const addItem = (item) => {
-        ReportService.addItem(item);
+        return ReportService.addItem(item);
         // dependents.forEach(d => {
         //    addItem(d);
         // });
@@ -78,8 +78,8 @@ const GuideTables = ({
                 <div className={innerClasses}>
                     <Tabs>
                         <TabList>
-                            <Tab>Caracteristcs</Tab>
-                            <Tab>Sub Caracteristcs</Tab>
+                            <Tab>Caracteristc</Tab>
+                            <Tab>Subcaracteristcs</Tab>
                             <Tab>Properties</Tab>
                             <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
@@ -87,10 +87,14 @@ const GuideTables = ({
                         </TabList>
 
                         <TabPanel>
-                            <p>Caracteristcs</p>
+                            <ul className="tab-panel-inner">
+                                {ReportService.getDefinitions().map(renderGuideContentItem)}
+                            </ul>
                         </TabPanel>
                         <TabPanel>
-                            <p>Sub Caracteristcs</p>
+                            <ul className="tab-panel-inner">
+                                {ReportService.getAllItens().map(renderGuideContentItem)}
+                            </ul>
                         </TabPanel>
                         <TabPanel> {/* Properties */}
                             <ul className="tab-panel-inner">

@@ -47,6 +47,8 @@ const GuideCaracteristcItem = ({
     bottomOuterDivider,
     ...props
 }) => {
+  
+  const [selected, setSelected] = useState(data.selected);
   const [selectedCount, setSelectedCount] = useState(data[property].filter(i => i.selected).length);
 
   const classes = classNames(
@@ -61,9 +63,13 @@ const GuideCaracteristcItem = ({
   }
 
   const updateCountAdd = (item) => {
-    addAction(item);
+    let resultOk = addAction(item);
+    
+    if (!resultOk) return false;
+
     let count = data[property].filter(i => i.selected).length;
     setSelectedCount(count);
+    return true;
   };
 
   const updateCountRemove = (item) => {
@@ -78,7 +84,7 @@ const GuideCaracteristcItem = ({
       className={classes}
       key={data.name}
     >
-      <Collapsible trigger={`${data.name} - (${selectedCount}/${data[property].length})`}>
+      <Collapsible trigger={`${data.name} - (${selectedCount}/${data[property].length})`} className={selected ? 'selected' : 'notselected'}>
         <ul>
           {data[property].map(renderGuideContentItem)}
         </ul>

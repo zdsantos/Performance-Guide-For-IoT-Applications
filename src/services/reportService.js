@@ -1,13 +1,15 @@
 import { exception } from "react-ga";
-import { guideContent, tools } from '../models/guide-content-base';
+import { guideContent, tools, performanceDefinitions } from '../models/guide-content-base';
 import React from 'react';
 import Latex from 'react-latex';
+import { toast } from 'react-toastify';
 
 class ReportService {
     
     constructor() {
         this._Data = guideContent;
         this._Tools = tools;
+        this._PerformanceDefinitions = performanceDefinitions;
     }
 
     // public methods
@@ -15,29 +17,43 @@ class ReportService {
         if (item["id"] === undefined) throw exception();
         if (item["type"] === undefined) throw exception();
 
-        if (item["type"] === "tools") return this._addTool(item);
+        let canAddResult = this._checkAddValidation(item);
 
-        let caracteristic = this._Data.find(i => i.id === item.characteristics);
-        var selectedItem = caracteristic[item.type].find(i => i.id === item.id);
-
-        selectedItem.selected = true;
-        console.log('ReportService', `add: ${item.id}`)
-
-        // check dependents, if active the trigged send the list
-        this._checkDependentsTrigger(item);
+        if (canAddResult === 0) {
+            if (item["type"] === "tools") return this._addGeneric(item);
+            if (item["type"] === "definitions") return this._addGeneric(item);
+            if (item["type"] === "subcharacteristics") return this._addGeneric(item);
+    
+            let caracteristic = this._Data.find(i => i.id === item.characteristics);
+            var selectedItem = caracteristic[item.type].find(i => i.id === item.id);
+    
+            selectedItem.selected = true;
+            console.log('ReportService', `add: ${item.id}`)
+    
+            // check dependents, if active the trigged send the list
+            this._checkDependentsTrigger(item);
+            return true;
+        } else {
+            this._createNotificationError(item, canAddResult);
+            return false;
+        }
     }
 
     removeItem(item) {
         if (item["id"] === undefined) throw exception();
         if (item["type"] === undefined) throw exception();
 
-        if (item["type"] === "tools") return this._removeTool(item);
+        if (item["type"] === "tools") return this._removeGeneric(item);
+        if (item["type"] === "definitions") return this._removeGeneric(item);
+        if (item["type"] === "subcharacteristics") return this._removeGeneric(item);
 
         let caracteristic = this._Data.find(i => i.id === item.characteristics);
         var selectedItem = caracteristic[item.type].find(i => i.id === item.id);
         
         selectedItem.selected = false;
         console.log('ReportService', `remove: ${item.id}`);
+
+        this._checkRemoveDependecies(item);
     }
 
     getAllItens() {
@@ -48,6 +64,10 @@ class ReportService {
         return this._Tools;
     }
 
+    getDefinitions() {
+        return this._PerformanceDefinitions;
+    }
+
     generateReport() {
         return <div class="report">
             <div class="header">
@@ -55,12 +75,57 @@ class ReportService {
                     <h1>Test Plan Template</h1>
                 </div>
             </div>
+            {this._createIntroductionSection()}
+            <hr></hr>
+            {this._createsubcharacteristicSection()}
+            <hr></hr>
             {this._createCaracteristicSection()}
+            <hr></hr>
             {this._createToolsSection()}
         </div>;
     }
 
     // private methods
+    _createIntroductionSection() {
+        var definitionsList = this._PerformanceDefinitions.filter(d => d.selected);
+
+        if (definitionsList.length > 0) {
+            return (<div class="container">
+                <h2>Performance</h2>
+                {definitionsList.map(this._printDefinition)}
+            </div>);
+        } else {
+            return;
+        }
+    }
+
+    _createsubcharacteristicSection() {
+        var subCarecteristic = this._Data.filter(d => d.selected);
+
+        if (subCarecteristic.length > 0) {
+            return (<div class="container">
+                <h2>subcharacteristics</h2>
+                {subCarecteristic.map(this._printsubcharacteristic)}
+            </div>);
+        } else {
+            return;
+        }
+    }
+
+    _printDefinition(definition) {
+        return (<div class="container definition">
+            <h3>{definition.name}</h3>
+            <p>{definition.description}</p>
+        </div>)
+    }
+
+    _printsubcharacteristic(sub) {
+        return (<div class="container subcharacteristic">
+            <h3>{sub.name}</h3>
+            <p>{sub.description}</p>
+        </div>)
+    }
+
     _createCaracteristicSection() {
         var caracteristicsList = this._Data.filter(c => this._checkIsUsedCaracteristic(c));
 
@@ -170,18 +235,18 @@ class ReportService {
         return hasProperties && hasMetrics && hasTestCases;
     }
 
-    _addTool(tool) {
-        var selectedTool = this._Tools.find(i => i.id === tool.id);
+    _addGeneric(tool) {
+        var selectedTool = this.getGenericById(tool.id);
         selectedTool.selected = true;
         console.log('ReportService', `add: ${tool.id}`);
-
-        return [];
+        return true;
     }
 
-    _removeTool(tool) {
-        var selectedTool = this._Tools.find(i => i.id === tool.id);
+    _removeGeneric(item) {
+        var selectedTool = this.getGenericById(item.id);
         selectedTool.selected = false;
-        console.log('ReportService', `remove: ${tool.id}`)
+        console.log('ReportService', `remove: ${item.id}`)
+        this._checkRemoveDependecies(item);
     }
 
     _checkDependentsTrigger(item) {
@@ -189,6 +254,42 @@ class ReportService {
             let dependents = item.dependents.map(id => this.getItemById(id));
             dependents.forEach(d => this.addItem(d));
         }
+    }
+
+    /**
+     * 
+     * @param {*} item to be added
+     * @returns 0 - can add, 1 - must select a caracteristic, 2 - must select a property
+     */
+    _checkAddValidation(item) {
+        var characteristic = this.getItemById(item.characteristics);
+
+        if (item.type === "properties"){
+            return characteristic.selected ? 0 : 1;
+        } else if (item.type === "testCases" || item.type === "metrics") {
+            var hasSelectedProperty = characteristic.properties.find(p => p.selected);
+            return hasSelectedProperty !== undefined && hasSelectedProperty !== null ? 0 : 2;
+        } else {
+            return 0;
+        }
+    }
+
+    _checkRemoveDependecies(item) {
+        if (item.type === "subcharacteristics") { // remove characteristic -> remove all properties
+            item.properties.map(p => this.removeItem(p));
+        } else if(item.type === "properties") { // remove property, if is the last => remove all test cases and metrics
+            let characteristic = this.getItemById(item.characteristics);
+            var hasSelectedProperty = characteristic.properties.find(p => p.selected);
+            if (!hasSelectedProperty) {
+                characteristic.testCases.forEach(tc => this.removeItem(tc));
+                characteristic.metrics.forEach(tc => this.removeItem(tc));
+            }
+        }
+    }
+
+    getGenericById(id) {
+        var list = [].concat(this._Data).concat(this._PerformanceDefinitions).concat(this._Tools);
+        return list.find(i => i.id === id);
     }
 
     getItemById(id) {
@@ -205,6 +306,27 @@ class ReportService {
 
             currentList.shift();
         }
+    }
+
+    _createNotificationError(item, errorId) {
+        var caracteristic = this.getItemById(item.characteristics);
+
+        let message = "";
+        if (errorId === 1) {
+            message = `You must selected '${caracteristic.name}' in first place.`;
+        } else if (errorId === 2) {
+            message = `At least one property of ${caracteristic.name} must be selected before select a test case or a metric.`;
+        }
+
+        toast.warn(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 }
 

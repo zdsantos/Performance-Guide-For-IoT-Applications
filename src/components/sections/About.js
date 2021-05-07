@@ -2,11 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
-import GuideTables from './partials/GuideTables';
 import ReportPreview from './partials/ReportPreview';
 import 'react-tabs/style/react-tabs.css';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -16,7 +13,7 @@ const defaultProps = {
     ...SectionTilesProps.defaults
 }
 
-const Guide = ({
+const About = ({
     className,
     topOuterDivider,
     bottomOuterDivider,
@@ -31,7 +28,7 @@ const Guide = ({
     ...props
 }) => {
     const outerClasses = classNames(
-        'guide',
+        'about',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
         hasBgColor && 'has-bg-color',
@@ -40,7 +37,7 @@ const Guide = ({
     );
 
     const innerClasses = classNames(
-        'guide-inner section-inner',
+        'about-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
@@ -53,7 +50,7 @@ const Guide = ({
     // );
 
     const sectionHeader = {
-        title: "Guide"
+        title: "About"
     };
 
     return (
@@ -64,24 +61,14 @@ const Guide = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <GuideTables />
-                    <ReportPreview />
-                    {/* <div className={splitClasses}>
-                        <div className="split-item">
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
-                        </div>
-                    </div> */}
-                    <ToastContainer />
+                    <p>In this wiki a performance testing guide for IoT is provided. The guide divides performance into 3 subcharacteristics, based on ISO 25010, namely, Temporal Behavior - is the level to which the response and processing time and transfer rates of a product or system, when performing its functions, meet the requirements, Resource Utilization - is the degree to which the quantities and types of resources used by a product or system, when performing their functions, meet the requirements, and Capacity - it is the degree to which the maximum limits of a product or system parameter meet the requirements. The guide aims to assist in performance testing of IoT applications by providing at the end of the process a test plan template.</p>
                 </div>
             </div>
         </section>
     );
 };
 
-Guide.propsTypes = propTypes;
-Guide.defaultProps = defaultProps;
+About.propsTypes = propTypes;
+About.defaultProps = defaultProps;
 
-export default Guide;
+export default About;

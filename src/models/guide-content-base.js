@@ -2,6 +2,9 @@ const guideContent = [
     {
         id: "time_behavior",
         name: "Time Behavior",
+        description: "According to ISO 25010, temporal behavior is the level at which the response and processing time and throughput rates of a product or system, in performing its functions, meet requirements.",
+        type: "subcharacteristics",
+        selected: false,
         properties: [
             {
                 selected: false,
@@ -10,7 +13,7 @@ const guideContent = [
                 title: "Dispatch Time",
                 characteristics: "time_behavior",
                 description: "Time until the task is ready for execution.",
-                dependents: ['M01','TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'TC12', 'TC13', 'TC14']
+                dependents: ['M01']
             },
             {
                 selected: false,
@@ -19,7 +22,7 @@ const guideContent = [
                 title: "Execution Time",
                 characteristics: "time_behavior",
                 description: "The time required until a task is completed.",
-                dependents: ['TC03','M01']
+                dependents: ['M02']
             },
             {
                 selected: false,
@@ -27,7 +30,8 @@ const guideContent = [
                 id: "P3",
                 title: "Message Transmission Time",
                 characteristics: "time_behavior",
-                description: "The time from sending a message until it is received."
+                description: "The time from sending a message until it is received.",
+                dependents: ['M03']
             },
             {
                 selected: false,
@@ -35,7 +39,8 @@ const guideContent = [
                 id: "P4",
                 title: "Minimum Waiting Time",
                 characteristics: "time_behavior",
-                description: "The shortest time until a message is received."
+                description: "The shortest time until a message is received.",
+                dependents: ['M04']
             },
             {
                 selected: false,
@@ -43,7 +48,8 @@ const guideContent = [
                 id: "P5",
                 title: "Reconnection Time",
                 characteristics: "time_behavior",
-                description: "The time in which the network establishes a new connection."
+                description: "The time in which the network establishes a new connection.",
+                dependents: ['M05']
             },
             {
                 selected: false,
@@ -51,7 +57,8 @@ const guideContent = [
                 id: "P6",
                 title: "Response Time",
                 characteristics: "time_behavior",
-                description: "The time when the request is sent and the response is received, and may vary when the application reaches its peak."
+                description: "The time when the request is sent and the response is received, and may vary when the application reaches its peak.",
+                dependents: ['M06']
             },
             {
                 selected: false,
@@ -59,7 +66,8 @@ const guideContent = [
                 id: "P7",
                 title: "Loading Time",
                 characteristics: "time_behavior",
-                description: "The time it takes for the application to load the information it needs for its operation from the environment."
+                description: "The time it takes for the application to load the information it needs for its operation from the environment.",
+                dependents: ['M07']
             },
             {
                 selected: false,
@@ -67,7 +75,8 @@ const guideContent = [
                 id: "P8",
                 title: "Adaptation Time",
                 characteristics: "time_behavior",
-                description: "The time in which the application adapts to the changing state of the environment."
+                description: "The time in which the application adapts to the changing state of the environment.",
+                dependents: ['M08']
             }
         ],
         testCases: [
@@ -256,7 +265,8 @@ const guideContent = [
                     "$X$ = dispatch time",
                     "$t1$ = task preparation start time",
                     "$t2$ = the time the task is ready to send"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -271,7 +281,8 @@ const guideContent = [
                     "$X$ = execution time",
                     "$t1$ = execution start time",
                     "$t2$ = the time the task was completed"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -286,7 +297,8 @@ const guideContent = [
                     "$X$ = message transmission time",
                     "$t1$ = time the message was sent",
                     "$t2$ = the time the message was received"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -300,7 +312,8 @@ const guideContent = [
                     "$X = min(E)$",
                     "$X$ = minimum waiting time",
                     "$E$ = $\\{experiment_1, experiment_2, ... experiment_n\\}$"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -315,7 +328,8 @@ const guideContent = [
                     "$X$ = reconnection time",
                     "$t1$ = time that a network was available",
                     "$t2$ = time in which a new connection is re-established in the application"
-                ]
+                ],
+                dependents: ['TC09']
             },
             {
                 selected: false,
@@ -330,7 +344,8 @@ const guideContent = [
                     "$X$ = response time",
                     "$t1$ = time the message was sent to the destination",
                     "$t2$ = time the response arrived at the origin"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -345,7 +360,8 @@ const guideContent = [
                     "$X$ = loading time",
                     "$t1$ = time just after connection is resumed",
                     "$t2$ = time after loading the state of the environment into the application"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             },
             {
                 selected: false,
@@ -360,13 +376,17 @@ const guideContent = [
                     "$X$ = adaptation time",
                     "$t1$ = time of the change in the state of the environment",
                     "$t2$ = time after application adaptation"
-                ]
+                ],
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
             }
         ]
     },
     {
         id: "resource_utilization",
         name: "Resource Utilization",
+        description: "According to ISO 25010, it is the degree to which the quantities and types of resources used by a product or system, when performing its functions, meet requirements.",
+        type: "subcharacteristics",
+        selected: false,
         properties: [
             {
                 selected: false,
@@ -374,7 +394,8 @@ const guideContent = [
                 id: "P9",
                 title: "CPU Availability",
                 characteristics: "resource_utilization",
-                description: "Percentage of time the CPU is available for use"
+                description: "Percentage of time the CPU is available for use",
+                dependents: ['M09', 'M10', 'M11']
             },
             {
                 selected: false,
@@ -382,7 +403,8 @@ const guideContent = [
                 id: "P10",
                 title: "CPU Consumption",
                 characteristics: "resource_utilization",
-                description: "Average amount of CPU resource usage in the application"
+                description: "Average amount of CPU resource usage in the application",
+                dependents: ['M09', 'M10', 'M11']
             },
             {
                 selected: false,
@@ -390,7 +412,8 @@ const guideContent = [
                 id: "P11",
                 title: "Energy Consumption",
                 characteristics: "resource_utilization",
-                description: "Average amount of energy used to run an application"
+                description: "Average amount of energy used to run an application",
+                dependents: ['M15', 'M16', 'M17']
             },
             {
                 selected: false,
@@ -398,7 +421,8 @@ const guideContent = [
                 id: "P12",
                 title: "Energy Efficiency",
                 characteristics: "resource_utilization",
-                description: "The amount of energy consumed by an application compared to the amount of energy actually used to perform the proposed function"
+                description: "The amount of energy consumed by an application compared to the amount of energy actually used to perform the proposed function",
+                dependents: ['M15', 'M17']
             },
             {
                 selected: false,
@@ -406,7 +430,8 @@ const guideContent = [
                 id: "P13",
                 title: "Memory Consumption",
                 characteristics: "resource_utilization",
-                description: "Average amount of memory used to run an application"
+                description: "Average amount of memory used to run an application",
+                dependents: ['M12', 'M13', 'M14']
             },
             {
                 selected: false,
@@ -414,7 +439,8 @@ const guideContent = [
                 id: "P14",
                 title: "Energy Saving",
                 characteristics: "resource_utilization",
-                description: "A lower power consumption of the application when compared to the expected value"
+                description: "A lower power consumption of the application when compared to the expected value",
+                dependents: ['M15', 'M17']
             },
             {
                 selected: false,
@@ -422,7 +448,8 @@ const guideContent = [
                 id: "P15",
                 title: "Usage Time",
                 characteristics: "resource_utilization",
-                description: "The amount of time the application remained executing instructions"
+                description: "The amount of time the application remained executing instructions",
+                dependents: ['M09', 'M10', 'M11']
             },
             {
                 selected: false,
@@ -430,7 +457,8 @@ const guideContent = [
                 id: "P16",
                 title: "Data consumption",
                 characteristics: "resource_utilization",
-                description: "Average amount of data used to run the application"
+                description: "Average amount of data used to run the application",
+                dependents: ['M18', 'M19', 'M20']
             }
         ],
         testCases: [
@@ -585,7 +613,8 @@ const guideContent = [
                     "$X$ = consumption in stand by",
                     "$n$ = amount of consumption readings in the standard usage period",
                     "$C_n$ = nth consumption value during standard usage period"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -600,7 +629,8 @@ const guideContent = [
                     "$X$ = peak consumption",
                     "$n$ = number of consumption readings in the standard usage period",
                     "$C_n$ = nth consumption value during standard usage period"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17', 'TC19' ]
             },
             {
                 selected: false,
@@ -615,7 +645,8 @@ const guideContent = [
                     "$X$ = average consumption",
                     "$n$ = number of consumption readings",
                     "$C_n$ = nth consumption value"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17', 'TC19']
             },
             {
                 selected: false,
@@ -630,7 +661,8 @@ const guideContent = [
                     "$X$ = standby consumption",
                     "$n$ = number of consumption readings in the stand-by period",
                     "$C_n$ = nth consumption value during the stand by period"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17', 'TC19']
             },
             {
                 selected: false,
@@ -645,7 +677,8 @@ const guideContent = [
                     "$X$ = peak consumption",
                     "$n$ = number of consumption readings in the peak usage period",
                     "$C_n$ = nth consumption value during peak usage period"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17', 'TC19']
             },
             {
                 selected: false,
@@ -662,7 +695,8 @@ const guideContent = [
                     "$M2$ = consumption values during peak usage period ",
                     "$n$ = number of consumption readings in the standard usage period",
                     "$m$ = number of consumption readings in the peak usage period"
-                ]
+                ],
+                dependents: ['TC12', 'TC13', 'TC14', 'TC16', 'TC17', 'TC19']
             },
             {
                 selected: false,
@@ -678,7 +712,8 @@ const guideContent = [
                     "$n$ = number of components",
                     "$m$ = number of consumption readings in the stand by period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
-                ]
+                ],
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -694,7 +729,8 @@ const guideContent = [
                     "$n$ = number of components",
                     "$m$ = number of consumption readings in the peak usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
-                ]
+                ],
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -710,12 +746,13 @@ const guideContent = [
                     "$n$ = number of components",
                     "$m$ = number of consumption readings in the standard usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
-                ]
+                ],
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
                 type: "metrics",
-                id: "M018",
+                id: "M18",
                 title: "Data consumption in standby",
                 purpose: "Evaluates the data consumption of the system in standby",
                 characteristics: "resource_utilization",
@@ -725,7 +762,8 @@ const guideContent = [
                     "$X$ = data consumption in stand by",
                     "$n$ = number of consumption readings in the stand by period",
                     "$C_n$ = nth consumption value"
-                ]
+                ],
+                dependents: ['TC15', 'TC18']
             },
             {
                 selected: false,
@@ -740,7 +778,8 @@ const guideContent = [
                     "$X$ = peak data consumption",
                     "$n$ = number of consumption readings in the peak usage period",
                     "$C_n$ = nth value of consumption in the peak usage period"
-                ]
+                ],
+                dependents: ['TC15', 'TC18']
             },
             {
                 selected: false,
@@ -755,13 +794,17 @@ const guideContent = [
                     "$X$ = average data consumption",
                     "$n$ = number of consumption readings in the standard usage period",
                     "$C_n$ = nth consumption value in the standard usage period"
-                ]
+                ],
+                dependents: ['TC15', 'TC18']
             }
         ]
     },
     {
         id: "capacity",
         name: "Capacity",
+        description: "According to ISO 25010, it is the degree to which the maximum limits of a product or system parameter meet requirements.",
+        type: "subcharacteristics",
+        selected: false,
         properties: [
           {
               selected: false,
@@ -769,7 +812,8 @@ const guideContent = [
               id: "P17",
               title: "Download/Upload rate",
               characteristics: "capacity",
-              description: "Speed of receiving data from a remote system/speed of sending data to a remote system"
+              description: "Speed of receiving data from a remote system/speed of sending data to a remote system",
+              dependents: ['M21']
           },
           {
               selected: false,
@@ -777,7 +821,8 @@ const guideContent = [
               id: "P18",
               title: "Throughput",
               characteristics: "capacity",
-              description: "The number of bits forwarded per unit time"
+              description: "The number of bits forwarded per unit time",
+              dependents: ['M21']
           },
           {
               selected: false,
@@ -785,7 +830,8 @@ const guideContent = [
               id: "P19",
               title: "Message Size",
               characteristics: "capacity",
-              description: "The set of bytes present in each packet for the complete sending of the message"
+              description: "The set of bytes present in each packet for the complete sending of the message",
+              dependents: ['M21']
           },
           {
               selected: false,
@@ -793,7 +839,8 @@ const guideContent = [
               id: "P20",
               title: "Network Usage",
               characteristics: "capacity",
-              description: "Percentage of the network that is manipulating data"
+              description: "Percentage of the network that is manipulating data",
+              dependents: ['M22']
           },
           {
               selected: false,
@@ -801,7 +848,8 @@ const guideContent = [
               id: "P21",
               title: "Bandwidth",
               characteristics: "capacity",
-              description: "Transmission capacity of the network"
+              description: "Transmission capacity of the network",
+              dependents: ['M21']
           }
         ],
         testCases: [
@@ -875,30 +923,70 @@ const guideContent = [
                 id: "M21",
                 title: "Throughput",
                 purpose: "Evaluate how fast a packet travels over the network",
-                characteristics: "resource_utilization",
+                characteristics: "capacity",
                 method: "Count the size of the package and compare it to the time it takes to send the message",
                 measure: [
                     "$X = s/t$",
                     "$X$ = throughput",
                     "$s$ = package size",
                     "$t$ = time to send the message"
-                ]
+                ],
+                dependents: ['TC20', 'TC21', 'TC22', 'TC23']
             },
             {
                 selected: false,
                 type: "metrics",
                 id: "M22",
                 title: "Maximum Number of Simultaneous users",
-                characteristics: "time_behavior",
+                characteristics: "capacity",
                 purpose: "Evaluate the system's ability to respond to large numbers of simultaneous users.",
                 method: "Make a low, constant number of requests to the system over a continuous time interval, and increase this number continuously until the system can no longer respond to the requests.",
                 measure: [
                     "$X = max(U)$",
                     "$X$ = maximum number of simultaneous users",
                     "$U$ = quantities of simultaneous users$"
-                ]
+                ],
+                dependents: ['TC20']
             }
         ]
+    }
+];
+
+const performanceDefinitions = [
+    {
+        id: "iso25010",
+        title: "ISO 25010 (2011)",
+        description: "Performance represents the amount of resources used under set conditions.",
+        type: "definitions",
+        selected: false,
+    },
+    {
+        id: "rjain",
+        title: "R. Jain (1991)",
+        description: "Performance is the time taken to execute a service, the rate at which the service is executed, and the resources consumed during the execution of the service.",
+        type: "definitions",
+        selected: false,
+    },
+    {
+        id: "bass",
+        title: "Bass, Clements and Kazman (2003)",
+        description: "Performance is concerned with how quickly the software \"responds when an event occurs\".",
+        type: "definitions",
+        selected: false,
+    },
+    {
+        id: "chung",
+        title: "Chung, de Prado Leite and JCS (2009)",
+        description: "Performance involves time/space limits, such as workloads, response time, throughput, and available storage space. For example, \"the system must handle 100 transactions / second\".",
+        type: "definitions",
+        selected: false,
+    },
+    {
+        id: "langsari",
+        title: "Langsari, Rochimah, and Akbar (2018)",
+        description: "Performance is concerned with the quality of the software's response when an event occurs. To evaluate whether a system performs well, the time between the event and the response can be measured first and then compared with a previously determined time constraint.",
+        type: "definitions",
+        selected: false,
     }
 ];
 
@@ -960,4 +1048,4 @@ const tools = [
         link: "https://community.akamai.com/customers/s/article/CloudTest-Methodology-and-Assets?language=en_US"
     }
 ];
-export { guideContent, tools };
+export { guideContent, tools, performanceDefinitions };
