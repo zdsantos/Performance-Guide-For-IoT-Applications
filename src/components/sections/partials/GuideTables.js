@@ -58,6 +58,10 @@ const GuideTables = ({
         return (<GuideCaracteristcItem key={item.id} data={item} property="properties" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
     }
 
+    const renderGuideCaracteristcDefinitions = (item) => {
+        return (<GuideCaracteristcItem key={item.id} data={item} property="definitions" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
+    }
+
     const addItem = (item) => {
         return ReportService.addItem(item);
         // dependents.forEach(d => {
@@ -79,7 +83,7 @@ const GuideTables = ({
                     <Tabs>
                         <TabList>
                             <Tab>Caracteristc</Tab>
-                            <Tab>Subcaracteristcs</Tab>
+                            <Tab>Subcharacteristic</Tab>
                             <Tab>Properties</Tab>
                             <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
@@ -88,7 +92,7 @@ const GuideTables = ({
 
                         <TabPanel>
                             <ul className="tab-panel-inner">
-                                {ReportService.getDefinitions().map(renderGuideContentItem)}
+                                {ReportService.getDefinitions().map(renderGuideCaracteristcDefinitions)}
                             </ul>
                         </TabPanel>
                         <TabPanel>
@@ -108,12 +112,13 @@ const GuideTables = ({
                             </ul>
                         </TabPanel>
                         <TabPanel> {/* Metrics */}
-                        <p className="alert">It is recommended that metrics that have been preselected by properties remain selected. Otherwise, measurement completeness is not guaranteed.</p>
+                            <p className="alert">It is recommended that metrics that have been preselected by properties remain selected. Otherwise, measurement completeness is not guaranteed.</p>
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideCaracteristcMetrics)}
                             </ul>
                         </TabPanel>
                         <TabPanel> {/* Suggested Tools */}
+                            <p className="alert">It is suggested tools for collecting metrics, could be unselected. It's use is not mandatory.</p>
                             <ul className="tab-panel-inner">
                                 {ReportService.getTools().map(renderGuideContentItem)}
                             </ul>

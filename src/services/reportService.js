@@ -1,5 +1,5 @@
 import { exception } from "react-ga";
-import { guideContent, tools, performanceDefinitions } from '../models/guide-content-base';
+import { guideContent, tools, characteristics } from '../models/guide-content-base';
 import React from 'react';
 import Latex from 'react-latex';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ class ReportService {
     constructor() {
         this._Data = guideContent;
         this._Tools = tools;
-        this._PerformanceDefinitions = performanceDefinitions;
+        this._Characteristics = characteristics;
     }
 
     // public methods
@@ -65,7 +65,7 @@ class ReportService {
     }
 
     getDefinitions() {
-        return this._PerformanceDefinitions;
+        return this._Characteristics;
     }
 
     generateReport() {
@@ -87,7 +87,7 @@ class ReportService {
 
     // private methods
     _createIntroductionSection() {
-        var definitionsList = this._PerformanceDefinitions.filter(d => d.selected);
+        var definitionsList = this._Characteristics.filter(d => d.selected);
 
         if (definitionsList.length > 0) {
             return (<div class="container">
@@ -104,7 +104,7 @@ class ReportService {
 
         if (subCarecteristic.length > 0) {
             return (<div class="container">
-                <h2>subcharacteristics</h2>
+                <h2>Subcharacteristics</h2>
                 {subCarecteristic.map(this._printsubcharacteristic)}
             </div>);
         } else {
@@ -235,15 +235,15 @@ class ReportService {
         return hasProperties && hasMetrics && hasTestCases;
     }
 
-    _addGeneric(tool) {
-        var selectedTool = this.getGenericById(tool.id);
+    _addGeneric(item) {
+        var selectedTool = this.getItemById(item.id);
         selectedTool.selected = true;
-        console.log('ReportService', `add: ${tool.id}`);
+        console.log('ReportService', `add: ${item.id}`);
         return true;
     }
 
     _removeGeneric(item) {
-        var selectedTool = this.getGenericById(item.id);
+        var selectedTool = this.getItemById(item.id);
         selectedTool.selected = false;
         console.log('ReportService', `remove: ${item.id}`)
         this._checkRemoveDependecies(item);
@@ -287,13 +287,8 @@ class ReportService {
         }
     }
 
-    getGenericById(id) {
-        var list = [].concat(this._Data).concat(this._PerformanceDefinitions).concat(this._Tools);
-        return list.find(i => i.id === id);
-    }
-
     getItemById(id) {
-        var currentList = this._Data;
+        var currentList = this._Data.concat(this._Characteristics).concat(this._Tools);
 
         while(currentList.length !== 0) {
             let item = currentList[0];
@@ -302,6 +297,8 @@ class ReportService {
 
             if (item.properties && item.properties.length > 0) currentList = currentList.concat(item.properties);
             if (item.testCases && item.testCases.length > 0) currentList = currentList.concat(item.testCases);
+            if (item.metrics && item.metrics.length > 0) currentList = currentList.concat(item.metrics);
+            if (item.definitions && item.definitions.length > 0) currentList = currentList.concat(item.definitions);
             if (item.metrics && item.metrics.length > 0) currentList = currentList.concat(item.metrics);
 
             currentList.shift();

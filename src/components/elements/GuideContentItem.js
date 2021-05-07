@@ -76,7 +76,7 @@ const GuideContentItem = ({
   } else {
     actionButton = <Button color="danger" wideMobile onClick={() => remove(data)}><FaTimes /></Button>;
   }
-
+  
   if (data.type === "testCases") {
     return (
       <li
@@ -143,7 +143,7 @@ const GuideContentItem = ({
         key={data.id}
       >
       <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
-        <p><span className="property-title">Description:</span> {data.description}</p>
+        <p><span className="property-title">Definition:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
         </div>
@@ -158,7 +158,7 @@ const GuideContentItem = ({
         key={data.id}
       >
       <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.name}>
-        <p><span className="property-title">Description:</span> {data.description}</p>
+        <p><span className="property-title">Definition:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
         </div>

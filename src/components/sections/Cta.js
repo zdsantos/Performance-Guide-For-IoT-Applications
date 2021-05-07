@@ -6,6 +6,7 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import ButtonGroup from '../elements/ButtonGroup';
 import { useForm } from 'react-hook-form';
+import { EmailService } from '../../services/emailService'
 
 const propTypes = {
   ...SectionProps.types,
@@ -66,7 +67,7 @@ const Cta = ({
           className={innerClasses}
         >
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input className="mb-24" name="name" placeholder="Name" {...register("name")}></Input>
+            <Input className="mb-24" name="name" placeholder="Name" {...register("name", { required: true })}></Input>
             <Input className="mb-24" name="email" type="email" placeholder="Email" {...register("email")}></Input>
             <Input className="mb-24" name="message" type="textarea" placeholder="Your message" rows="5" {...register("message")}></Input>
             <div><span>{messageCharsLeft}</span></div>

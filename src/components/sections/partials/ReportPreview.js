@@ -46,7 +46,7 @@ const ReportPreview = ({
     );
 
     const sectionHeader = {
-        title: "Report"
+        title: "Test Plan"
     };
 
     var reportComponentRef = "";
@@ -68,14 +68,14 @@ const ReportPreview = ({
                         <div className="container-xs">
                             <div className="reveal-from-bottom" data-reveal-delay="600">
                                 <ButtonGroup>
-                                    <Button color="primary" wideMobile onClick={() => generateReport()}>Generate Report</Button>
+                                    <Button color="primary" wideMobile onClick={() => generateReport()}>Generate Test Plan</Button>
                                 </ButtonGroup>
                             </div>
                             <div className="report-content m-32" ref={(el) => (reportComponentRef = el)} hidden={!reportGenerated}>{reportComponent}</div>
                             <div className="reveal-from-bottom" data-reveal-delay="600" hidden={!reportGenerated}>
                                 <ButtonGroup>
                                     <ReactToPrint
-                                        trigger={() => <Button color="secondary" wideMobile>Print report!</Button>}
+                                        trigger={() => <Button color="secondary" wideMobile>Print</Button>}
                                         content={() => reportComponentRef}
                                         documentTitle="test_plan"
                                     />

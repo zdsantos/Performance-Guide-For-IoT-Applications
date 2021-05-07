@@ -266,7 +266,7 @@ const guideContent = [
                     "$t1$ = task preparation start time",
                     "$t2$ = the time the task is ready to send"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
@@ -282,7 +282,7 @@ const guideContent = [
                     "$t1$ = execution start time",
                     "$t2$ = the time the task was completed"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
@@ -298,7 +298,7 @@ const guideContent = [
                     "$t1$ = time the message was sent",
                     "$t2$ = the time the message was received"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'wireshark', 'tcpdump', 'neotys', 'iotify']
             },
             {
                 selected: false,
@@ -313,7 +313,7 @@ const guideContent = [
                     "$X$ = minimum waiting time",
                     "$E$ = $\\{experiment_1, experiment_2, ... experiment_n\\}$"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'wireshark', 'tcpdump', 'iotify']
             },
             {
                 selected: false,
@@ -345,7 +345,7 @@ const guideContent = [
                     "$t1$ = time the message was sent to the destination",
                     "$t2$ = time the response arrived at the origin"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'ifogsim', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify', 'soasta']
             },
             {
                 selected: false,
@@ -635,7 +635,7 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                id: "M011",
+                id: "M11",
                 title: "Assess average CPU consumption",
                 purpose: "Count how much the application consumes from the CPU during a standard usage period, including peak and non-peak moments, sum all and values and calculate the average",
                 characteristics: "resource_utilization",
@@ -651,7 +651,7 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                id: "M012",
+                id: "M12",
                 title: "Memory consumption in stand by",
                 purpose: "Evaluate memory consumption in stand by",
                 characteristics: "resource_utilization",
@@ -667,7 +667,7 @@ const guideContent = [
             {
                 selected: false,
                 type: "metrics",
-                id: "M013",
+                id: "M13",
                 title: "Peak memory consumption",
                 purpose: "Evaluate how much memory the system consumes when it peaks",
                 characteristics: "resource_utilization",
@@ -713,7 +713,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the stand by period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17']
+                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
             },
             {
                 selected: false,
@@ -730,7 +730,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the peak usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17']
+                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
             },
             {
                 selected: false,
@@ -747,7 +747,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the standard usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17']
+                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
             },
             {
                 selected: false,
@@ -763,12 +763,12 @@ const guideContent = [
                     "$n$ = number of consumption readings in the stand by period",
                     "$C_n$ = nth consumption value"
                 ],
-                dependents: ['TC15', 'TC18']
+                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
                 type: "metrics",
-                id: "M019",
+                id: "M19",
                 title: "Peak data consumption",
                 purpose: "Evaluate peak system data consumption",
                 characteristics: "resource_utilization",
@@ -779,12 +779,12 @@ const guideContent = [
                     "$n$ = number of consumption readings in the peak usage period",
                     "$C_n$ = nth value of consumption in the peak usage period"
                 ],
-                dependents: ['TC15', 'TC18']
+                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
                 type: "metrics",
-                id: "M020",
+                id: "M20",
                 title: "Average Data Consumption",
                 purpose: "Evaluate the average data consumption of the system",
                 characteristics: "resource_utilization",
@@ -795,7 +795,7 @@ const guideContent = [
                     "$n$ = number of consumption readings in the standard usage period",
                     "$C_n$ = nth consumption value in the standard usage period"
                 ],
-                dependents: ['TC15', 'TC18']
+                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
             }
         ]
     },
@@ -931,7 +931,7 @@ const guideContent = [
                     "$s$ = package size",
                     "$t$ = time to send the message"
                 ],
-                dependents: ['TC20', 'TC21', 'TC22', 'TC23']
+                dependents: ['TC20', 'TC21', 'TC22', 'TC23', 'ifogsim', 'neotys', 'wireshark', 'tcpdump', 'iotify', 'soasta']
             },
             {
                 selected: false,
@@ -946,52 +946,60 @@ const guideContent = [
                     "$X$ = maximum number of simultaneous users",
                     "$U$ = quantities of simultaneous users$"
                 ],
-                dependents: ['TC20']
+                dependents: ['TC20', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify', 'soasta']
             }
         ]
     }
 ];
 
-const performanceDefinitions = [
+const characteristics = [
     {
-        id: "iso25010",
-        title: "ISO 25010 (2011)",
-        description: "Performance represents the amount of resources used under set conditions.",
-        type: "definitions",
-        selected: false,
-    },
-    {
-        id: "rjain",
-        title: "R. Jain (1991)",
-        description: "Performance is the time taken to execute a service, the rate at which the service is executed, and the resources consumed during the execution of the service.",
-        type: "definitions",
-        selected: false,
-    },
-    {
-        id: "bass",
-        title: "Bass, Clements and Kazman (2003)",
-        description: "Performance is concerned with how quickly the software \"responds when an event occurs\".",
-        type: "definitions",
-        selected: false,
-    },
-    {
-        id: "chung",
-        title: "Chung, de Prado Leite and JCS (2009)",
-        description: "Performance involves time/space limits, such as workloads, response time, throughput, and available storage space. For example, \"the system must handle 100 transactions / second\".",
-        type: "definitions",
-        selected: false,
-    },
-    {
-        id: "langsari",
-        title: "Langsari, Rochimah, and Akbar (2018)",
-        description: "Performance is concerned with the quality of the software's response when an event occurs. To evaluate whether a system performs well, the time between the event and the response can be measured first and then compared with a previously determined time constraint.",
-        type: "definitions",
-        selected: false,
+        id: "performance",
+        name: "Performance",
+        type: "characteristics",
+        definitions: [
+            {
+                id: "iso25010",
+                title: "ISO 25010 (2011)",
+                description: "Performance represents the amount of resources used under set conditions.",
+                type: "definitions",
+                selected: false,
+            },
+            {
+                id: "rjain",
+                title: "R. Jain (1991)",
+                description: "Performance is the time taken to execute a service, the rate at which the service is executed, and the resources consumed during the execution of the service.",
+                type: "definitions",
+                selected: false,
+            },
+            {
+                id: "bass",
+                title: "Bass, Clements and Kazman (2003)",
+                description: "Performance is concerned with how quickly the software \"responds when an event occurs\".",
+                type: "definitions",
+                selected: false,
+            },
+            {
+                id: "chung",
+                title: "Chung, de Prado Leite and JCS (2009)",
+                description: "Performance involves time/space limits, such as workloads, response time, throughput, and available storage space. For example, \"the system must handle 100 transactions / second\".",
+                type: "definitions",
+                selected: false,
+            },
+            {
+                id: "langsari",
+                title: "Langsari, Rochimah, and Akbar (2018)",
+                description: "Performance is concerned with the quality of the software's response when an event occurs. To evaluate whether a system performs well, the time between the event and the response can be measured first and then compared with a previously determined time constraint.",
+                type: "definitions",
+                selected: false,
+            }
+        ]
     }
-];
+]
 
 const tools = [
     {
+        selected: false,
         id: "ifogsim",
         title: "iFogSim",
         type: "tools",
@@ -1000,6 +1008,7 @@ const tools = [
         link: "https://github.com/Cloudslab/iFogSim"
     },
     {
+        selected: false,
         id: "neotys",
         title: "Neotys",
         type: "tools",
@@ -1008,6 +1017,7 @@ const tools = [
         link: "https://www.neotys.com/"
     },
     {
+        selected: false,
         id: "wireshark",
         title: "Wireshark",
         type: "tools",
@@ -1016,6 +1026,7 @@ const tools = [
         link: "https://www.wireshark.org/"
     },
     {
+        selected: false,
         id: "loadUI",
         title: "LoadUI Pro",
         type: "tools",
@@ -1024,14 +1035,16 @@ const tools = [
         link: "https://www.soapui.org/professional/loadui -pro/"
     },
     {
+        selected: false,
         id: "iotify",
-        title: "IoTIFY ",
+        title: "IoTIFY",
         type: "tools",
         description: "It offers a virtual lab, with virtual devices for performance, security and other testing.",
         license: "Closed",
         link: "https://iotify.io/"
     },
     {
+        selected: false,
         id: "tcpdump",
         title: "Tcpdump",
         type: "tools",
@@ -1040,6 +1053,7 @@ const tools = [
         link: "http://www.tcpdump.org/"
     },
     {
+        selected: false,
         id: "soasta",
         title: "SOASTA CloudTes",
         type: "tools",
@@ -1048,4 +1062,5 @@ const tools = [
         link: "https://community.akamai.com/customers/s/article/CloudTest-Methodology-and-Assets?language=en_US"
     }
 ];
-export { guideContent, tools, performanceDefinitions };
+
+export { guideContent, tools, characteristics };

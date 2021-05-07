@@ -18,7 +18,7 @@ const Home = () => {
       {/* <FeaturesTiles /> */}
       {/* <Testimonial topDivider /> */}
       <Guide id="guide" />
-      {/* <Cta id="suggestions" /> */}
+      <Cta id="suggestions" />
     </>
   );
 }
