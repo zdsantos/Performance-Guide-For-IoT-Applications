@@ -74,7 +74,7 @@ const Guide = ({
                             </div>
                         </div>
                     </div> */}
-                    <ToastContainer />
+                    {/* <ToastContainer /> */}
                 </div>
             </div>
         </section>

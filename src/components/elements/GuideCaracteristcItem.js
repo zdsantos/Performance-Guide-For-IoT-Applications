@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Collapsible from 'react-collapsible';
 import GuideContentItem from './GuideContentItem';
-import { propertyOf } from 'lodash';
 
 const propTypes = {
     data: PropTypes.object,

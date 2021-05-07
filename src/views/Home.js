@@ -5,6 +5,7 @@ import Guide from '../components/sections/Guide';
 import About from '../components/sections/About';
 import Slider from '../components/sections/Slider';
 import Cta from '../components/sections/Cta';
+import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
 
@@ -19,6 +20,7 @@ const Home = () => {
       {/* <Testimonial topDivider /> */}
       <Guide id="guide" />
       <Cta id="suggestions" />
+      <ToastContainer />
     </>
   );
 }

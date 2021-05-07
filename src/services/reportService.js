@@ -3,6 +3,7 @@ import { guideContent, tools, characteristics } from '../models/guide-content-ba
 import React from 'react';
 import Latex from 'react-latex';
 import { toast } from 'react-toastify';
+import notificationService from "./notificationService";
 
 class ReportService {
     
@@ -315,15 +316,16 @@ class ReportService {
             message = `At least one property of ${caracteristic.name} must be selected before select a test case or a metric.`;
         }
 
-        toast.warn(message, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        notificationService.showError(message);
+        // toast.warn(message, {
+        //     position: "top-right",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        // });
     }
 }
 
