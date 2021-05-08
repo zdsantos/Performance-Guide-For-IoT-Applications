@@ -61,20 +61,23 @@ const Slider = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <Carousel showArrows={true}>
-                        <div>
-                            <img src={require('../../assets/images/features-split-image-01.png')} />
-                            <p className="legend">Legend 1</p>
-                        </div>
-                        <div>
-                            <img src={require('../../assets/images/features-split-image-02.png')} />
-                            <p className="legend">Legend 2</p>
-                        </div>
-                        <div>
-                            <img src={require('../../assets/images/features-split-image-03.png')} />
-                            <p className="legend">Legend 3</p>
-                        </div>
-                    </Carousel>
+                    <h4>The figures below show how to use the Performance Testing Guide for IoT Applications</h4>
+                    <div className="reveal-from-bottom" data-reveal-delay="600">
+                        <Carousel showArrows={true}>
+                            <div>
+                                <img src={require('../../assets/images/features-split-image-01.png')} />
+                                <p className="legend">Legend 1</p>
+                            </div>
+                            <div>
+                                <img src={require('../../assets/images/features-split-image-02.png')} />
+                                <p className="legend">Legend 2</p>
+                            </div>
+                            <div>
+                                <img src={require('../../assets/images/features-split-image-03.png')} />
+                                <p className="legend">Legend 3</p>
+                            </div>
+                        </Carousel>
+                    </div>
                 </div>
             </div>
         </section>

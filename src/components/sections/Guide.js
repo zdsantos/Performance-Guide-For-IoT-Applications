@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import GuideTables from './partials/GuideTables';
-import ReportPreview from './partials/ReportPreview';
 import 'react-tabs/style/react-tabs.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,7 +52,7 @@ const Guide = ({
     // );
 
     const sectionHeader = {
-        title: "Guide"
+        title: "IoT Testing Guide"
     };
 
     return (
@@ -65,7 +64,6 @@ const Guide = ({
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
                     <GuideTables />
-                    <ReportPreview />
                     {/* <div className={splitClasses}>
                         <div className="split-item">
                             <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">

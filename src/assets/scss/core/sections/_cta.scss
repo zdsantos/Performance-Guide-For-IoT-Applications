@@ -1,5 +1,7 @@
 .cta {
 
+	background-color: cadetblue;
+	
 	.section-inner {
 		padding-top: $cta--padding-t__mobile;
 		padding-bottom: $cta--padding-b__mobile;
@@ -9,13 +11,10 @@
 		justify-content: center;
 	}
 
-	.contactInfo {
-		
-		p {
-			color: color(high-contrast);
-		}
-
+	p {
+		color: color(high-contrast);
 	}
+	
 }
 
 @include media( '>medium' ) {

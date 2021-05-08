@@ -1,4 +1,7 @@
 .slider {
+
+    background-color: cadetblue;
+
     .section-inner {
         position: relative; // To always display inner elements above pseudo decorative stuff
         padding-top: $slider--padding-t__mobile;
@@ -8,12 +11,22 @@
     .section-header {
         padding-bottom: $section-header--padding__mobile;
         margin-top: $section-header--margin__mobile;
+        
+        h2 {
+            color: color(high-contrast);
+        }
     }
 
     .slider-inner {
         
+        text-align: center;
+
         img {
             max-height: $slider--height;
+        }
+
+        h4 {
+            color: color(high-contrast);
         }
     }
     

@@ -5,6 +5,7 @@ import Guide from '../components/sections/Guide';
 import About from '../components/sections/About';
 import Slider from '../components/sections/Slider';
 import Cta from '../components/sections/Cta';
+import ReportPreview from '../components/sections/partials/ReportPreview';
 import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
@@ -18,7 +19,8 @@ const Home = () => {
       {/* <FeaturesSplit invertMobile topDivider imageFill className="illustration-section-02" /> */}
       {/* <FeaturesTiles /> */}
       {/* <Testimonial topDivider /> */}
-      <Guide id="guide" />
+      <Guide id="guide" hasBgColor />
+      <ReportPreview hasBgColor />
       <Cta id="suggestions" />
       <ToastContainer />
     </>

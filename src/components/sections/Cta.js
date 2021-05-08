@@ -91,6 +91,11 @@ const Cta = ({
     const email = watch('email') || "";
     const message = watch('message') || "";
 
+    const splitClasses = classNames(
+        'split-wrap',
+        'alignTop'
+    );
+
     return (
         <section
             {...props}
@@ -100,17 +105,33 @@ const Cta = ({
                 <div
                     className={innerClasses}
                 >
-                    <div className="contactInfo">
-                        <p>If you have any suggestions or any doubts, please feel free to message us.</p>
+                    <div className={splitClasses}>
+                        <div className="split-item">
+                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
+                                <div className="contactInfo">
+                                    <p>If you have any suggestions or any doubts, please feel free to message us.</p>
+                                </div>
+                                <form id="contactForm" onSubmit={onSubmit}>
+                                    <Input className="mb-24" name="name" placeholder="Name" {...register("name", { required: true })}></Input>
+                                    <Input className="mb-24" name="email" type="email" placeholder="Email" {...register("email")}></Input>
+                                    <Input className="mb-24" name="message" type="textarea" placeholder="Your message" rows={5} {...register("message")}></Input>
+                                    <ButtonGroup>
+                                        <Button type="submit" color="secondary" wideMobile>Send</Button>
+                                    </ButtonGroup>
+                                </form>
+                            </div>
+                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
+                                <p>The full Guide is available for consult for everyone in the link below</p>
+                                <div className="reveal-from-bottom" data-reveal-delay="600">
+                                    <ButtonGroup>
+                                        <Button tag="a" color="secondary" target="_blank" wideMobile href="https://mega.nz/file/dzxz0S6T#t9-rNK7sbat33A_arUIJMWakKt5YQuITpuzSODLt57E">
+                                            See Guide
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <form id="contactForm" onSubmit={onSubmit}>
-                        <Input className="mb-24" name="name" placeholder="Name" {...register("name", { required: true })}></Input>
-                        <Input className="mb-24" name="email" type="email" placeholder="Email" {...register("email")}></Input>
-                        <Input className="mb-24" name="message" type="textarea" placeholder="Your message" rows={5} {...register("message")}></Input>
-                        <ButtonGroup>
-                            <Button type="submit" color="secondary" wideMobile>Send</Button>
-                        </ButtonGroup>
-                    </form>
                 </div>
             </div>
         </section>

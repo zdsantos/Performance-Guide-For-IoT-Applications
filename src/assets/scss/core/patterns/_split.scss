@@ -93,7 +93,7 @@
 				flex-shrink: 0;
 				width: ($container--width-sm / 2) - $split-item-content--padding-h;
 				margin-bottom: 0;
-				margin-right: $split-item--inner-padding-h;
+				margin-right: ($split-item--inner-padding-h / 2);
 			}
 
 			.split-item-image {
@@ -107,7 +107,7 @@
 
 			.split-item-content {
 				order: 1;
-				margin-left: $split-item--inner-padding-h;
+				margin-left: ($split-item--inner-padding-h / 2);
 				margin-right: 0;
 			}
 		}

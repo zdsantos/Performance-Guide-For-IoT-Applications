@@ -5,11 +5,21 @@
 		padding-bottom: $about--padding-b__mobile;
 	}
 
+	.section-header {
+        padding-bottom: $section-header--padding__mobile;
+        margin-top: $section-header--margin__mobile;
+    }
+
+	.about-inner {
+
+		text-align: center;
+
+		.button-group {
+			justify-content: center;
+		}
+	}
 }
 
-.about-inner {
-	
-}
 
 @include media( '<=medium' ) {
 
