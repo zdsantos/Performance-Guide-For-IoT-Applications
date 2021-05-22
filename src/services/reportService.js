@@ -56,6 +56,9 @@ class ReportService {
         if (item["impactHander"])
         {
             item["impactHander"](true);
+
+            var caracteristic = this.getItemById(item.characteristics);
+            if (caracteristic["impactHandler"]) caracteristic["impactHandler"](item);
         }
     }
 

@@ -81,6 +81,11 @@ const GuideCaracteristcItem = ({
     setSelectedCount(count);
   };
 
+  data["impactHandler"] = (item) => {
+    var count = data[property].filter(i => i.impacted).length;
+    setImpactedCount(count);
+  }
+
   return (
     <li
       {...props}
