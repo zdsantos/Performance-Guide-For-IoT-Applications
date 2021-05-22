@@ -48,6 +48,7 @@ const GuideContentItem = ({
 }) => {
 
   const [selected, setSelected] = useState(data.selected);
+  const [impacted, setImpacted] = useState(data.impacted);
   
   const buildStepsListItem = (step) => {
     return (<li key={step}><Latex>{step}</Latex></li>)
@@ -55,14 +56,18 @@ const GuideContentItem = ({
 
   const add = (item) => {
     let resultOk = addAction(item);
-
     if (resultOk) setSelected(!selected);
   }
+
   const remove = (item) => {
     removeAction(item);
     setSelected(!selected);
   }
   
+  data["impactHander"] = (value) => {
+    setImpacted(value);
+  }
+
   const classes = classNames(
     'guide-content-item',
     className,
@@ -77,6 +82,13 @@ const GuideContentItem = ({
     actionButton = <Button color="danger" wideMobile onClick={() => remove(data)}><FaTimes /></Button>;
   }
   
+  let highlightClass = 'notselected';
+  if (selected) {
+    highlightClass = 'selected';
+  } else if (impacted) {
+    highlightClass = 'impacted';
+  }
+
   if (data.type === "testCases") {
     return (
       <li
@@ -84,7 +96,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={`${data.idLong} - ${data.title}`}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={`${data.idLong} - ${data.title}`} easing="ease">
         <p><span className="property-title">Test Evironment:</span> {data.testEnvironment}</p>
         <p><span className="property-title">Pré-Conditions:</span> {data.preConditions}</p>
         <p><span className="property-title">Step-by-step:</span>
@@ -106,7 +118,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={`${data.id} - ${data.title}`}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={`${data.id} - ${data.title}`} easing="ease">
         <p><span className="property-title">Purpose:</span> {data.purpose}</p>
         <p><span className="property-title">Method:</span> {data.method}</p>
         <p><span className="property-title">Measure:</span>
@@ -127,7 +139,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.title} easing="ease">
         <p><span className="property-title">Description:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
@@ -142,7 +154,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.title} easing="ease">
         <p><span className="property-title">Definition:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
@@ -157,7 +169,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.name}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.name} easing="ease">
         <p><span className="property-title">Definition:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}
@@ -172,7 +184,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible className={selected ? 'selected' : 'notselected'} trigger={data.title}>
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.title} easing="ease">
         <p><span className="property-title">Description:</span> {data.description}</p>
         <p><span className="property-title">License:</span> {data.license}</p>
         <p><span className="property-title">Link:</span> <a href={data.link} target="blank">{data.link}</a></p>

@@ -47,8 +47,9 @@ const GuideCaracteristcItem = ({
     ...props
 }) => {
   
-  const [selected, setSelected] = useState(data.selected);
+  const [selected] = useState(data.selected);
   const [selectedCount, setSelectedCount] = useState(data[property].filter(i => i.selected).length);
+  const [impactedCount, setImpactedCount] = useState(data[property].filter(i => i.impacted).length);
 
   const classes = classNames(
     'guide-caracteristic-item',
@@ -68,6 +69,9 @@ const GuideCaracteristcItem = ({
 
     let count = data[property].filter(i => i.selected).length;
     setSelectedCount(count);
+
+    count = data[property].filter(i => i.impacted).length;
+    setImpactedCount(count);
     return true;
   };
 
@@ -83,7 +87,8 @@ const GuideCaracteristcItem = ({
       className={classes}
       key={data.name}
     >
-      <Collapsible trigger={`${data.name} - (${selectedCount}/${data[property].length})`} className={selected ? 'selected' : 'notselected'}>
+      <div className="impactCounter" hidden={impactedCount === 0}>Impacted itens: ({impactedCount}/{data[property].length})</div>
+      <Collapsible triggerTagName="div" trigger={`${data.name} - (${selectedCount}/${data[property].length})`} className={selected ? 'selected' : 'notselected'} easing="ease">
         <ul>
           {data[property].map(renderGuideContentItem)}
         </ul>

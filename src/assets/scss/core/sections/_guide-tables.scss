@@ -30,6 +30,9 @@
 
 	.react-tabs__tab-list {
 		border: none;
+		overflow-x: auto;
+		overflow-y: hidden;
+    	white-space: nowrap
 	}
 
 	.react-tabs__tab--selected {

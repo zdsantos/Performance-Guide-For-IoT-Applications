@@ -1,9 +1,9 @@
 import { exception } from "react-ga";
-import { guideContent, tools, characteristics } from '../models/guide-content-base';
+import { guideContent, tools, characteristics, iotCharacteristics } from '../models/guide-content-base';
 import React from 'react';
 import Latex from 'react-latex';
-import { toast } from 'react-toastify';
 import notificationService from "./notificationService";
+import Enums from "../models/enums";
 
 class ReportService {
     
@@ -11,6 +11,7 @@ class ReportService {
         this._Data = guideContent;
         this._Tools = tools;
         this._Characteristics = characteristics;
+        this._IoTCharacteristics = iotCharacteristics;
     }
 
     // public methods
@@ -33,10 +34,28 @@ class ReportService {
     
             // check dependents, if active the trigged send the list
             this._checkDependentsTrigger(item);
+            let hasImpact = this._checkImpactTrigger(item);
+
+            if (hasImpact)
+                this._createNotificationAlert(item, Enums.AlertType.HasImpacts);
+
             return true;
         } else {
             this._createNotificationError(item, canAddResult);
             return false;
+        }
+    }
+
+    addImpact(item) {
+        if (item["id"] === undefined) throw exception();
+
+        var impactedItem = this.getItemById(item.id);
+        impactedItem.impacted = true;
+        console.log('ReportService', `${item.id} was impacted`);
+
+        if (item["impactHander"])
+        {
+            item["impactHander"](true);
         }
     }
 
@@ -69,6 +88,10 @@ class ReportService {
         return this._Characteristics;
     }
 
+    getIoTCharacteristics() {
+        return this._IoTCharacteristics;
+    }
+
     generateReport() {
         return <div class="report">
             <div class="header">
@@ -88,8 +111,8 @@ class ReportService {
 
     // private methods
     _createIntroductionSection() {
-        var definitionsList = this._Characteristics.filter(d => d.selected);
-
+        var definitionsList = this._Characteristics[0].definitions.filter(d => d.selected);
+        
         if (definitionsList.length > 0) {
             return (<div class="container">
                 <h2>Performance</h2>
@@ -115,7 +138,7 @@ class ReportService {
 
     _printDefinition(definition) {
         return (<div class="container definition">
-            <h3>{definition.name}</h3>
+            <h3>{definition.title}</h3>
             <p>{definition.description}</p>
         </div>)
     }
@@ -257,6 +280,20 @@ class ReportService {
         }
     }
 
+    _checkImpactTrigger(item) {
+        if (item.impacts && item.impacts.length > 0) {
+            let impacts = item.impacts.map(id => this.getItemById(id));
+            impacts = impacts.filter(i => !i.selected);
+
+            if (impacts.length > 0)
+            {
+                impacts.forEach(d => this.addImpact(d));
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * 
      * @param {*} item to be added
@@ -266,7 +303,15 @@ class ReportService {
         var characteristic = this.getItemById(item.characteristics);
 
         if (item.type === "properties"){
-            return characteristic.selected ? 0 : 1;
+            if (characteristic.selected)
+                return 0;
+            else if (item.impacted) {
+                this.addItem(characteristic);
+                this._createNotificationAlert(characteristic, Enums.AlertType.SubCharacteristicSelected);
+                return 0;
+            } else {
+                return 1;
+            }
         } else if (item.type === "testCases" || item.type === "metrics") {
             var hasSelectedProperty = characteristic.properties.find(p => p.selected);
             return hasSelectedProperty !== undefined && hasSelectedProperty !== null ? 0 : 2;
@@ -289,7 +334,7 @@ class ReportService {
     }
 
     getItemById(id) {
-        var currentList = this._Data.concat(this._Characteristics).concat(this._Tools);
+        var currentList = this._Data.concat(this._Characteristics).concat(this._Tools).concat(this._IoTCharacteristics);
 
         while(currentList.length !== 0) {
             let item = currentList[0];
@@ -317,15 +362,17 @@ class ReportService {
         }
 
         notificationService.showError(message);
-        // toast.warn(message, {
-        //     position: "top-right",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        // });
+    }
+
+    _createNotificationAlert(item, alertType) {
+        let message = "";
+        if (alertType === Enums.AlertType.HasImpacts) {
+            message = "This property impacts other properties. Impacted properties have been highlighted."
+        } else if (alertType === Enums.AlertType.SubCharacteristicSelected) {
+            message = `Subcharecteristic ${item.name} was selected automatically.`
+        }
+
+        notificationService.showInfo(message);
     }
 }
 

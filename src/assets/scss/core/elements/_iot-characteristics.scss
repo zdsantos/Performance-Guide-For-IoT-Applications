@@ -1,0 +1,24 @@
+.iot-characteristics {
+    margin: 12px;
+
+    label {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 12px;
+        border-radius: 10px;
+
+        p {
+            margin: 0 0 0 12px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    }
+
+    label:hover {
+        background-color: color-bg(bg-primary-light);
+        color: white;
+    }
+}

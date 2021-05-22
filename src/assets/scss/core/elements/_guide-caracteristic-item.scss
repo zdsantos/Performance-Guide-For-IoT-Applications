@@ -14,6 +14,11 @@
             margin-right: 0px
         }
     }
+    
+    .impactCounter {
+        text-align: end;
+        font-size: 0.8em;
+    }
 
     .property-title {
         font-weight: 600;
@@ -42,6 +47,10 @@
 
         .notselected {
             background: color-bg(bg-primary-light) !important;
+        }
+
+        .impacted {
+            background: color-bg(bg-third) !important;
         }
     }
 

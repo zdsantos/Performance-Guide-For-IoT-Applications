@@ -2,9 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
-import GuideTables from './partials/GuideTables';
+import Image from '../elements/Image';
 import 'react-tabs/style/react-tabs.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -14,7 +13,7 @@ const defaultProps = {
     ...SectionTilesProps.defaults
 }
 
-const Guide = ({
+const Environment = ({
     className,
     topOuterDivider,
     bottomOuterDivider,
@@ -29,7 +28,7 @@ const Guide = ({
     ...props
 }) => {
     const outerClasses = classNames(
-        'guide',
+        'environment',
         topOuterDivider && 'has-top-divider',
         bottomOuterDivider && 'has-bottom-divider',
         hasBgColor && 'has-bg-color',
@@ -38,7 +37,7 @@ const Guide = ({
     );
 
     const innerClasses = classNames(
-        'guide-inner section-inner',
+        'environment-inner section-inner',
         topDivider && 'has-top-divider',
         bottomDivider && 'has-bottom-divider'
     );
@@ -51,7 +50,7 @@ const Guide = ({
     // );
 
     const sectionHeader = {
-        title: "IoT Testing Guide"
+        title: "Environment"
     };
 
     return (
@@ -62,23 +61,17 @@ const Guide = ({
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />
                 <div className={innerClasses}>
-                    <GuideTables />
-                    {/* <div className={splitClasses}>
-                        <div className="split-item">
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
-                            <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
-                            </div>
-                        </div>
-                    </div> */}
-                    {/* <ToastContainer /> */}
+                    <p>Performance refers to the amount of resources used under defined conditions. The performance characteristic, according to ISO 25010, is divided into 3 subcharacteristics - Temporal Behavior - is the level to which the response and processing time and transfer rates of a product or system, when performing its functions, meet the requirements, Resource Utilization - is the degree to which the quantities and types of resources used by a product or system, when performing their functions, meet the requirements, and Capacity - it is the degree to which the maximum limits of a product or system parameter meet the requirements. The guide aims to assist in performance testing of IoT applications by providing at the end of the process a customizable test plan.</p>
+                    <div className="image-block">
+                        <Image alt="Archteture flow" src="https://img.freepik.com/fotos-gratis/3d-rendem-de-uma-mesa-de-madeira-com-uma-imagem-defocussed-de-um-barco-em-um-lago_1048-3432.jpg?size=626&ext=jpg"></Image>
+                    </div>
                 </div>
             </div>
         </section>
     );
 };
 
-Guide.propsTypes = propTypes;
-Guide.defaultProps = defaultProps;
+Environment.propsTypes = propTypes;
+Environment.defaultProps = defaultProps;
 
-export default Guide;
+export default Environment;

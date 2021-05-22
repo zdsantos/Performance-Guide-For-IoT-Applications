@@ -65,16 +65,25 @@ const Slider = ({
                     <div className="reveal-from-bottom" data-reveal-delay="600">
                         <Carousel showArrows={true}>
                             <div>
-                                <img src={require('../../assets/images/features-split-image-01.png')} />
-                                <p className="legend">Legend 1</p>
+                                <img alt="step 1" src={require('../../assets/images/steps_Prancheta 1.png')} />
                             </div>
                             <div>
-                                <img src={require('../../assets/images/features-split-image-02.png')} />
-                                <p className="legend">Legend 2</p>
+                                <img alt="step 2" src={require('../../assets/images/steps_Prancheta 2.png')} />
                             </div>
                             <div>
-                                <img src={require('../../assets/images/features-split-image-03.png')} />
-                                <p className="legend">Legend 3</p>
+                                <img alt="step 3" src={require('../../assets/images/steps_Prancheta 3.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 4" src={require('../../assets/images/steps_Prancheta 4.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 5" src={require('../../assets/images/steps_Prancheta 5.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 6" src={require('../../assets/images/steps_Prancheta 6.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 7" src={require('../../assets/images/steps_Prancheta 7.png')} />
                             </div>
                         </Carousel>
                     </div>

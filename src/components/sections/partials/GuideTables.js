@@ -5,7 +5,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import GuideContentItem from '../../elements/GuideContentItem';
 import GuideCaracteristcItem from '../../elements/GuideCaracteristcItem';
+import CostBenefit from '../../sections/partials/CostBenefit';
 import ReportService from '../../../services/reportService';
+import IotCharacteristic from '../../elements/IotCharacteristics';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -62,6 +64,10 @@ const GuideTables = ({
         return (<GuideCaracteristcItem key={item.id} data={item} property="definitions" addAction={addItem} removeAction={removeItem} bottomOuterDivider />)
     }
 
+    const renderIoTCharacteristics = (item) => {
+        return (<IotCharacteristic data={item}></IotCharacteristic>)
+    }
+
     const addItem = (item) => {
         return ReportService.addItem(item);
         // dependents.forEach(d => {
@@ -83,19 +89,27 @@ const GuideTables = ({
                     <Tabs>
                         <TabList>
                             <Tab>Caracteristc</Tab>
-                            <Tab>Subcharacteristic</Tab>
+                            <Tab>Characteristcs Correlations</Tab>
+                            <Tab>Subcharacteristics</Tab>
                             <Tab>Properties</Tab>
                             <Tab>Abstract Test Cases</Tab>
                             <Tab>Metrics</Tab>
+                            <Tab>Cost Benefit</Tab>
                             <Tab>Suggested Tools</Tab>
                         </TabList>
 
-                        <TabPanel>
+                        <TabPanel> {/* Performance Definitions */}
                             <ul className="tab-panel-inner">
                                 {ReportService.getDefinitions().map(renderGuideCaracteristcDefinitions)}
                             </ul>
                         </TabPanel>
-                        <TabPanel>
+                        <TabPanel> {/* Impact */}
+                            <p className="alert">Texto explicativo</p>
+                            <ul>
+                                {ReportService.getIoTCharacteristics().map(renderIoTCharacteristics)}
+                            </ul>
+                        </TabPanel>
+                        <TabPanel> {/* Subcharacteristics */}
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideContentItem)}
                             </ul>
@@ -116,6 +130,9 @@ const GuideTables = ({
                             <ul className="tab-panel-inner">
                                 {ReportService.getAllItens().map(renderGuideCaracteristcMetrics)}
                             </ul>
+                        </TabPanel>
+                        <TabPanel> {/* Cost Benefit */}
+                            <CostBenefit></CostBenefit>
                         </TabPanel>
                         <TabPanel> {/* Suggested Tools */}
                             <p className="alert">It is suggested tools for collecting metrics, could be unselected. It's use is not mandatory.</p>

@@ -28,6 +28,9 @@ $palette: (
 		error: #FF6171,
 		warning: #FFA173,
 		success: #24E5AF
+	),
+	support: (
+		blue: #5f9ea0
 	)
 );
 
@@ -82,6 +85,8 @@ $bg--color: (
 	body-shadow:			0 20px 48px rgba(get-color(light, 1), .8),	// body shadow when a boxed layout is used (set to null if don't want a shadow)
 	body-outer:				lighten(get-color(light, 1), 2%),			// outer bg color when a boxed layout is used
 	bg-color: 				lighten(get-color(light, 1), 9%),			// .has-bg-color helper class
+	scroll:					get-color(secondary, 1),
+	scroll-hover:			lighten(get-color(secondary, 1), 10%),
 	shadow: 				0 24px 64px rgba(get-color(dark, 1), .64),	// .has-shadow helper class
 	code: 					darken(get-color(dark, 1), 3%),
 	code-inverse:			darken(get-color(dark, 1), 3%),
@@ -91,5 +96,6 @@ $bg--color: (
 	bg-primary-dark:		get-color(primary, 3),
 	bg-secondary:			get-color(secondary, 1),
 	bg-secondary-light:		get-color(secondary, 2),
-	bg-secondary-dark:		get-color(secondary, 3)
+	bg-secondary-dark:		get-color(secondary, 3),
+	bg-third:				get-color(support, blue)
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
@@ -32,7 +32,6 @@ const Cta = ({
     split,
     ...props
 }) => {
-    const { isSending, setIsSending } = useState(false);
     const { register, watch } = useForm();
     emailjs.init(EMAILJS_USER_ID);
     
@@ -124,7 +123,7 @@ const Cta = ({
                                 <p>The full Guide is available for consult for everyone in the link below</p>
                                 <div className="reveal-from-bottom" data-reveal-delay="600">
                                     <ButtonGroup>
-                                        <Button tag="a" color="secondary" target="_blank" wideMobile href="https://mega.nz/file/dzxz0S6T#t9-rNK7sbat33A_arUIJMWakKt5YQuITpuzSODLt57E">
+                                        <Button tag="a" color="secondary" target="_blank" wideMobile href="https://mega.nz/file/ZvAzjKaY#eH8nz1ibqZppXSqZiVD99zA2rT-3CkzTcP9ZlDexMW4">
                                             See Guide
                                         </Button>
                                     </ButtonGroup>

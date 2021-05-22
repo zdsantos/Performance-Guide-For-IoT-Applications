@@ -5,36 +5,44 @@ const guideContent = [
         description: "According to ISO 25010, temporal behavior is the level at which the response and processing time and throughput rates of a product or system, in performing its functions, meet requirements.",
         type: "subcharacteristics",
         selected: false,
+        impacted: false,
         properties: [
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P1",
                 title: "Dispatch Time",
                 characteristics: "time_behavior",
                 description: "Time until the task is ready for execution.",
-                dependents: ['M01']
+                dependents: ['M01'],
+                impacts: ['P2','P3']
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P2",
                 title: "Execution Time",
                 characteristics: "time_behavior",
                 description: "The time required until a task is completed.",
-                dependents: ['M02']
+                dependents: ['M02'],
+                impacts: ['P9']
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P3",
                 title: "Message Transmission Time",
                 characteristics: "time_behavior",
                 description: "The time from sending a message until it is received.",
-                dependents: ['M03']
+                dependents: ['M03'],
+                impacts: ['P4']
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P4",
                 title: "Minimum Waiting Time",
@@ -44,6 +52,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P5",
                 title: "Reconnection Time",
@@ -53,6 +62,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P6",
                 title: "Response Time",
@@ -62,6 +72,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P7",
                 title: "Loading Time",
@@ -71,6 +82,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P8",
                 title: "Adaptation Time",
@@ -82,6 +94,7 @@ const guideContent = [
         testCases: [
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC01",
                 idLong: "Test Case 01",
@@ -97,6 +110,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC02",
                 idLong: "Test Case 02",
@@ -112,6 +126,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC03",
                 idLong: "Test Case 03",
@@ -127,6 +142,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC04",
                 idLong: "Test Case 04",
@@ -142,6 +158,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC05",
                 idLong: "Test Case 05",
@@ -157,6 +174,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC06",
                 idLong: "Test Case 06",
@@ -172,6 +190,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC07",
                 idLong: "Test Case 07",
@@ -187,6 +206,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC08",
                 idLong: "Test Case 08",
@@ -203,6 +223,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC09",
                 idLong: "Test Case 09",
@@ -221,6 +242,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC10",
                 idLong: "Test Case 10",
@@ -236,6 +258,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC11",
                 idLong: "Test Case 11",
@@ -254,6 +277,7 @@ const guideContent = [
         metrics: [
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M01",
                 title: "Dispatch Time",
@@ -270,6 +294,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M02",
                 title: "Execution Time",
@@ -286,6 +311,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M03",
                 title: "Message Transmission Time",
@@ -302,6 +328,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M04",
                 title: "Minimum Waiting Time",
@@ -317,6 +344,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M05",
                 title: "Reconnection Time",
@@ -333,6 +361,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M06",
                 title: "Response Time",
@@ -349,6 +378,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M07",
                 title: "Loading Time",
@@ -365,6 +395,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M08",
                 title: "Adaptation Time",
@@ -387,9 +418,11 @@ const guideContent = [
         description: "According to ISO 25010, it is the degree to which the quantities and types of resources used by a product or system, when performing its functions, meet requirements.",
         type: "subcharacteristics",
         selected: false,
+        impacted: false,
         properties: [
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P9",
                 title: "CPU Availability",
@@ -399,6 +432,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P10",
                 title: "CPU Consumption",
@@ -408,6 +442,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P11",
                 title: "Energy Consumption",
@@ -417,6 +452,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P12",
                 title: "Energy Efficiency",
@@ -426,6 +462,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P13",
                 title: "Memory Consumption",
@@ -435,6 +472,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P14",
                 title: "Energy Saving",
@@ -444,6 +482,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P15",
                 title: "Usage Time",
@@ -453,6 +492,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "properties",
                 id: "P16",
                 title: "Data consumption",
@@ -464,6 +504,7 @@ const guideContent = [
         testCases: [
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC12",
                 idLong: "Test Case 12",
@@ -481,6 +522,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC13",
                 idLong: "Test Case 13",
@@ -498,6 +540,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC14",
                 idLong: "Test Case 14",
@@ -515,6 +558,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC15",
                 idLong: "Test Case 15",
@@ -532,6 +576,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC16",
                 idLong: "Test Case 16",
@@ -549,6 +594,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC17",
                 idLong: "Test Case 17",
@@ -566,6 +612,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC18",
                 idLong: "Test Case 18",
@@ -583,6 +630,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC19",
                 idLong: "Test Case 19",
@@ -602,6 +650,7 @@ const guideContent = [
         metrics: [
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M09",
                 title: "CPU consumption in Stand by",
@@ -618,6 +667,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M10",
                 title: "CPU consumption on Peak",
@@ -634,6 +684,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M11",
                 title: "Assess average CPU consumption",
@@ -650,6 +701,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M12",
                 title: "Memory consumption in stand by",
@@ -666,6 +718,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M13",
                 title: "Peak memory consumption",
@@ -682,6 +735,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M14",
                 title: "Average Memory Consumption",
@@ -700,6 +754,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M15",
                 title: "Power consumption in stand by",
@@ -717,6 +772,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M16",
                 title: "Peak Power Consumption",
@@ -734,6 +790,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M17",
                 title: "Average Energy Consumption",
@@ -751,6 +808,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M18",
                 title: "Data consumption in standby",
@@ -767,6 +825,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M19",
                 title: "Peak data consumption",
@@ -783,6 +842,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M20",
                 title: "Average Data Consumption",
@@ -805,9 +865,11 @@ const guideContent = [
         description: "According to ISO 25010, it is the degree to which the maximum limits of a product or system parameter meet requirements.",
         type: "subcharacteristics",
         selected: false,
+        impacted: false,
         properties: [
           {
               selected: false,
+              impacted: false,
               type: "properties",
               id: "P17",
               title: "Download/Upload rate",
@@ -817,6 +879,7 @@ const guideContent = [
           },
           {
               selected: false,
+              impacted: false,
               type: "properties",
               id: "P18",
               title: "Throughput",
@@ -826,15 +889,17 @@ const guideContent = [
           },
           {
               selected: false,
+              impacted: false,
               type: "properties",
               id: "P19",
-              title: "Message Size",
+              title: "Size of the Message",
               characteristics: "capacity",
               description: "The set of bytes present in each packet for the complete sending of the message",
               dependents: ['M21']
           },
           {
               selected: false,
+              impacted: false,
               type: "properties",
               id: "P20",
               title: "Network Usage",
@@ -844,6 +909,7 @@ const guideContent = [
           },
           {
               selected: false,
+              impacted: false,
               type: "properties",
               id: "P21",
               title: "Bandwidth",
@@ -855,6 +921,7 @@ const guideContent = [
         testCases: [
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC20",
                 idLong: "Test Case 20",
@@ -870,6 +937,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC21",
                 idLong: "Test Case 21",
@@ -885,6 +953,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC22",
                 idLong: "Test Case 22",
@@ -901,6 +970,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "testCases",
                 id: "TC23",
                 idLong: "Test Case 23",
@@ -919,6 +989,7 @@ const guideContent = [
         metrics: [
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M21",
                 title: "Throughput",
@@ -935,6 +1006,7 @@ const guideContent = [
             },
             {
                 selected: false,
+                impacted: false,
                 type: "metrics",
                 id: "M22",
                 title: "Maximum Number of Simultaneous users",
@@ -964,6 +1036,7 @@ const characteristics = [
                 description: "Performance represents the amount of resources used under set conditions.",
                 type: "definitions",
                 selected: false,
+                impacted: false,
             },
             {
                 id: "rjain",
@@ -971,6 +1044,7 @@ const characteristics = [
                 description: "Performance is the time taken to execute a service, the rate at which the service is executed, and the resources consumed during the execution of the service.",
                 type: "definitions",
                 selected: false,
+                impacted: false,
             },
             {
                 id: "bass",
@@ -978,6 +1052,7 @@ const characteristics = [
                 description: "Performance is concerned with how quickly the software \"responds when an event occurs\".",
                 type: "definitions",
                 selected: false,
+                impacted: false,
             },
             {
                 id: "chung",
@@ -985,6 +1060,7 @@ const characteristics = [
                 description: "Performance involves time/space limits, such as workloads, response time, throughput, and available storage space. For example, \"the system must handle 100 transactions / second\".",
                 type: "definitions",
                 selected: false,
+                impacted: false,
             },
             {
                 id: "langsari",
@@ -992,14 +1068,51 @@ const characteristics = [
                 description: "Performance is concerned with the quality of the software's response when an event occurs. To evaluate whether a system performs well, the time between the event and the response can be measured first and then compared with a previously determined time constraint.",
                 type: "definitions",
                 selected: false,
+                impacted: false,
             }
         ]
+    }
+]
+
+const iotCharacteristics = [
+    {
+        selected: false,
+        impacted: false,
+        id: "functionality",
+        name: "Functionality",
+        type: "characteristics",
+        definition: "A set of functions that satisfies the explicit and implicit needs for the purpose for which the product is intended."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "dependability",
+        name: "Dependability",
+        type: "characteristics",
+        definition: "Quality of service provided by a given system and the trust placed in the service provided."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "confidentiality",
+        name: "Confidentiality",
+        type: "characteristics",
+        definition: "The degree to which data has attributes that ensure it is accessible and interpretable only by authorized users in a specific use context."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "accuracy",
+        name: "Accuracy",
+        type: "characteristics",
+        definition: "The degree to which data has attributes that correctly represent the true value of the intended attribute of a concept or event in a specific usage context."
     }
 ]
 
 const tools = [
     {
         selected: false,
+        impacted: false,
         id: "ifogsim",
         title: "iFogSim",
         type: "tools",
@@ -1009,6 +1122,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "neotys",
         title: "Neotys",
         type: "tools",
@@ -1018,6 +1132,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "wireshark",
         title: "Wireshark",
         type: "tools",
@@ -1027,6 +1142,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "loadUI",
         title: "LoadUI Pro",
         type: "tools",
@@ -1036,6 +1152,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "iotify",
         title: "IoTIFY",
         type: "tools",
@@ -1045,6 +1162,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "tcpdump",
         title: "Tcpdump",
         type: "tools",
@@ -1054,6 +1172,7 @@ const tools = [
     },
     {
         selected: false,
+        impacted: false,
         id: "soasta",
         title: "SOASTA CloudTes",
         type: "tools",
@@ -1063,4 +1182,4 @@ const tools = [
     }
 ];
 
-export { guideContent, tools, characteristics };
+export { guideContent, tools, characteristics, iotCharacteristics };

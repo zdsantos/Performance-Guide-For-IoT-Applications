@@ -38,13 +38,14 @@
             padding: 0px 12px;
         }
         
-        .selected {
-            background: color-bg(bg-secondary) !important;
-        }
+    }
 
-        .notselected {
-            background: color-bg(bg-primary-light) !important;
-        }
+    .selected {
+        background: color-bg(bg-secondary) !important;
+    }
+
+    .notselected {
+        background: color-bg(bg-primary-light) !important;
     }
 
     .stepsList {

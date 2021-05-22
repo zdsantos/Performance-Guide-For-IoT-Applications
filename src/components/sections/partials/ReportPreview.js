@@ -75,7 +75,7 @@ const ReportPreview = ({
                             <div className="reveal-from-bottom" data-reveal-delay="600" hidden={!reportGenerated}>
                                 <ButtonGroup>
                                     <ReactToPrint
-                                        trigger={() => <Button color="secondary" wideMobile>Print</Button>}
+                                        trigger={() => <Button color="secondary" wideMobile>Download</Button>}
                                         content={() => reportComponentRef}
                                         documentTitle="test_plan"
                                     />
