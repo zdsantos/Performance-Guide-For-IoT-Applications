@@ -142,6 +142,7 @@ input[type="checkbox"] {
 	border-radius: 3px;
 	display: inline-block;
 	position: relative;
+	cursor: pointer;
 }
 
 input[type="checkbox"]:active, input[type="checkbox"]:checked:active {
@@ -162,6 +163,15 @@ input[type="checkbox"]:checked:after {
 	top: 0px;
 	left: 3px;
 	color: color(primary);
+}
+
+.modal-confirm {
+	justify-content: center;
+	text-align: center;
+
+	.button-group {
+		justify-content: center;
+	}
 }
 
 .invert-color  {

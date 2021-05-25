@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
+import Resources from '../../services/text-resource';
+import parser from 'html-react-parser';
 
 const propTypes = {
   ...SectionProps.types
@@ -22,18 +24,6 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-
-  // const [videoModalActive, setVideomodalactive] = useState(false);
-
-  // const openModal = (e) => {
-  //   e.preventDefault();
-  //   setVideomodalactive(true);
-  // }
-
-  // const closeModal = (e) => {
-  //   e.preventDefault();
-  //   setVideomodalactive(false);
-  // }
 
   const outerClasses = classNames(
     'hero section center-content',
@@ -59,8 +49,7 @@ const Hero = ({
         <div className={innerClasses}>
           <div className="hero-content">
             <h1 className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="200">
-              Performance Testing <span className="text-color-primary">Guide</span><br />
-              For IoT Applications
+              {parser(Resources.getResource().GuideFullTitle)}
             </h1>
             <div className="container-xs">
               {/* <p className="m-0 mb-32 reveal-from-bottom" data-reveal-delay="400">
@@ -69,7 +58,7 @@ const Hero = ({
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
                     <Button tag="a" color="primary" wideMobile href="#guide">
-                      Get started
+                      {parser(Resources.getResource().GetStarted)}
                     </Button>
                 </ButtonGroup>
               </div>

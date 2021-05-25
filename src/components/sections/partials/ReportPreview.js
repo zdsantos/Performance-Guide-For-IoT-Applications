@@ -6,6 +6,9 @@ import ButtonGroup from '../../elements/ButtonGroup';
 import Button from '../../elements/Button';
 import ReactToPrint from "react-to-print";
 import ReportService from '../../../services/reportService';
+import notificationService from '../../../services/notificationService';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -56,6 +59,40 @@ const ReportPreview = ({
         setReportGenerated(true);
     }
 
+    const showResetConfirm = () => {
+        confirmAlert({
+            // title: 'Confirm to Reset',
+            // message: 'Are you sure to reset all informations?',
+            // buttons: [
+            //     {
+            //         label: 'Yes, clean all',
+            //         onClick: () => reset()
+            //     },
+            //     {
+            //         label: 'No',
+            //         onClick: () => {}
+            //     }
+            // ]
+            customUI: ({ onClose }) => {
+                return (
+                  <div className='modal-confirm'>
+                    <h1>Are you sure?</h1>
+                    <p>You want to clean all informations?</p>
+                    <ButtonGroup>
+                        <Button color="dark" wideMobile onClick={() => onClose()}>No</Button>
+                        <Button color="danger" wideMobile onClick={() => { reset(); onClose(); }}>Yes, clean all</Button>
+                    </ButtonGroup>
+                  </div>
+                );
+              }
+        });
+    }
+
+    const reset = () => {
+        ReportService.reset();
+        notificationService.showSucess("The guide was reset, all informations was cleaned.")
+    }
+
     return (
         <section
             {...props}
@@ -68,6 +105,7 @@ const ReportPreview = ({
                         <div className="container-xs">
                             <div className="reveal-from-bottom" data-reveal-delay="600">
                                 <ButtonGroup>
+                                    <Button color="danger" wideMobile onClick={() => showResetConfirm()}>Reset</Button>
                                     <Button color="primary" wideMobile onClick={() => generateReport()}>Generate Test Plan</Button>
                                 </ButtonGroup>
                             </div>

@@ -7,7 +7,8 @@
         align-items: center;
         padding-left: 12px;
         border-radius: 10px;
-
+        cursor: pointer;
+        
         p {
             margin: 0 0 0 12px;
         }
@@ -17,8 +18,8 @@
         }
     }
 
-    label:hover {
-        background-color: color-bg(bg-primary-light);
-        color: white;
-    }
+    // label:hover {
+    //     background-color: color-bg(bg-primary-light);
+    //     color: white;
+    // }
 }

@@ -5,11 +5,13 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "emailjs-com": "^2.6.4",
+    "html-react-parser": "^1.2.6",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.5.1",
     "react-collapsible": "^2.8.3",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-hook-form": "^7.3.6",

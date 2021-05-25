@@ -12,7 +12,12 @@
 
 	.environment-inner {
 
-		text-align: center;
+		p {
+			li {
+				margin-left: 12px;
+				margin-bottom: 0px;
+			}
+		}
 
 		.button-group {
 			justify-content: center;

@@ -16,7 +16,7 @@ const guideContent = [
                 characteristics: "time_behavior",
                 description: "Time until the task is ready for execution.",
                 dependents: ['M01'],
-                impacts: ['P2','P3']
+                impacts: ['P9','P10','P13']
             },
             {
                 selected: false,
@@ -27,7 +27,7 @@ const guideContent = [
                 characteristics: "time_behavior",
                 description: "The time required until a task is completed.",
                 dependents: ['M02'],
-                impacts: ['P9']
+                impacts: ['P1','P3','P9','P10','P13','P17','P18','P20']
             },
             {
                 selected: false,
@@ -38,7 +38,7 @@ const guideContent = [
                 characteristics: "time_behavior",
                 description: "The time from sending a message until it is received.",
                 dependents: ['M03'],
-                impacts: ['P4']
+                impacts: ['P17','P18','P20']
             },
             {
                 selected: false,
@@ -48,7 +48,8 @@ const guideContent = [
                 title: "Minimum Waiting Time",
                 characteristics: "time_behavior",
                 description: "The shortest time until a message is received.",
-                dependents: ['M04']
+                dependents: ['M04'],
+                impacts: ['P3','P18','P20']
             },
             {
                 selected: false,
@@ -58,7 +59,8 @@ const guideContent = [
                 title: "Reconnection Time",
                 characteristics: "time_behavior",
                 description: "The time in which the network establishes a new connection.",
-                dependents: ['M05']
+                dependents: ['M05'],
+                impacts: ['P3','P18','P20']
             },
             {
                 selected: false,
@@ -68,7 +70,8 @@ const guideContent = [
                 title: "Response Time",
                 characteristics: "time_behavior",
                 description: "The time when the request is sent and the response is received, and may vary when the application reaches its peak.",
-                dependents: ['M06']
+                dependents: ['M06'],
+                impacts: ['P1','P2','P3','P9','P10','P13','P17','P18','P20']
             },
             {
                 selected: false,
@@ -78,7 +81,8 @@ const guideContent = [
                 title: "Loading Time",
                 characteristics: "time_behavior",
                 description: "The time it takes for the application to load the information it needs for its operation from the environment.",
-                dependents: ['M07']
+                dependents: ['M07'],
+                impacts: ['P2','P9','P10','P13','P17','P18','P20']
             },
             {
                 selected: false,
@@ -88,7 +92,8 @@ const guideContent = [
                 title: "Adaptation Time",
                 characteristics: "time_behavior",
                 description: "The time in which the application adapts to the changing state of the environment.",
-                dependents: ['M08']
+                dependents: ['M08'],
+                impacts: ['P1','P2','P3','P6','P7','P9','P10','P13','P17','P18','P20']
             }
         ],
         testCases: [
@@ -428,7 +433,8 @@ const guideContent = [
                 title: "CPU Availability",
                 characteristics: "resource_utilization",
                 description: "Percentage of time the CPU is available for use",
-                dependents: ['M09', 'M10', 'M11']
+                dependents: ['M09', 'M10', 'M11'],
+                impacts: ['P10','P15', 'P16']
             },
             {
                 selected: false,
@@ -438,7 +444,8 @@ const guideContent = [
                 title: "CPU Consumption",
                 characteristics: "resource_utilization",
                 description: "Average amount of CPU resource usage in the application",
-                dependents: ['M09', 'M10', 'M11']
+                dependents: ['M09', 'M10', 'M11'],
+                impacts: ['P9','P15', 'P16']
             },
             {
                 selected: false,
@@ -448,7 +455,8 @@ const guideContent = [
                 title: "Energy Consumption",
                 characteristics: "resource_utilization",
                 description: "Average amount of energy used to run an application",
-                dependents: ['M15', 'M16', 'M17']
+                dependents: ['M15', 'M16', 'M17'],
+                impacts: ['P1','P2','P3','P4','P8','P10','P13','P15','P16','P20']
             },
             {
                 selected: false,
@@ -458,7 +466,8 @@ const guideContent = [
                 title: "Energy Efficiency",
                 characteristics: "resource_utilization",
                 description: "The amount of energy consumed by an application compared to the amount of energy actually used to perform the proposed function",
-                dependents: ['M15', 'M17']
+                dependents: ['M15', 'M17'],
+                impacts: ['P1','P2','P3','P4','P8','P10','P11','P13','P15']
             },
             {
                 selected: false,
@@ -468,7 +477,8 @@ const guideContent = [
                 title: "Memory Consumption",
                 characteristics: "resource_utilization",
                 description: "Average amount of memory used to run an application",
-                dependents: ['M12', 'M13', 'M14']
+                dependents: ['M12', 'M13', 'M14'],
+                impacts: ['P15','P16']
             },
             {
                 selected: false,
@@ -478,17 +488,19 @@ const guideContent = [
                 title: "Energy Saving",
                 characteristics: "resource_utilization",
                 description: "A lower power consumption of the application when compared to the expected value",
-                dependents: ['M15', 'M17']
+                dependents: ['M15', 'M17'],
+                impacts: ['P11','P15']
             },
             {
                 selected: false,
                 impacted: false,
                 type: "properties",
                 id: "P15",
-                title: "Usage Time",
+                title: "Time of use",
                 characteristics: "resource_utilization",
                 description: "The amount of time the application remained executing instructions",
-                dependents: ['M09', 'M10', 'M11']
+                dependents: ['M09', 'M10', 'M11'],
+                impacts: ['P1','P2','P3','P4','P5','P6','P7','P8','P17','P18']
             },
             {
                 selected: false,
@@ -498,7 +510,8 @@ const guideContent = [
                 title: "Data consumption",
                 characteristics: "resource_utilization",
                 description: "Average amount of data used to run the application",
-                dependents: ['M18', 'M19', 'M20']
+                dependents: ['M18', 'M19', 'M20'],
+                impacts: ['P15','P18']
             }
         ],
         testCases: [
@@ -875,7 +888,8 @@ const guideContent = [
               title: "Download/Upload rate",
               characteristics: "capacity",
               description: "Speed of receiving data from a remote system/speed of sending data to a remote system",
-              dependents: ['M21']
+              dependents: ['M21'],
+              impacts: ['P18','P19','P20','P21']
           },
           {
               selected: false,
@@ -885,7 +899,8 @@ const guideContent = [
               title: "Throughput",
               characteristics: "capacity",
               description: "The number of bits forwarded per unit time",
-              dependents: ['M21']
+              dependents: ['M21'],
+              impacts: ['P19','P20','P21']
           },
           {
               selected: false,
@@ -905,7 +920,8 @@ const guideContent = [
               title: "Network Usage",
               characteristics: "capacity",
               description: "Percentage of the network that is manipulating data",
-              dependents: ['M22']
+              dependents: ['M22'],
+              impacts: ['P3','P15','P16','P17','P18']
           },
           {
               selected: false,
@@ -1078,6 +1094,30 @@ const iotCharacteristics = [
     {
         selected: false,
         impacted: false,
+        id: "understandability",
+        name: "Understandability",
+        type: "characteristics",
+        definition: "The degree to which data has attributes that enable it to be read and interpreted by users, and is expressed in appropriate languages, symbols, and units in a specific context of use."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "recoverability",
+        name: "Recoverability",
+        type: "characteristics",
+        definition: "The degree to which, in the event of interruption or failure, a product or system can recover the directly affected data and restore the desired state of the system."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "maintainability",
+        name: "Maintainability",
+        type: "characteristics",
+        definition: "The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it, or adapt it to changes in the environment and requirements."
+    },
+    {
+        selected: false,
+        impacted: false,
         id: "functionality",
         name: "Functionality",
         type: "characteristics",
@@ -1106,7 +1146,87 @@ const iotCharacteristics = [
         name: "Accuracy",
         type: "characteristics",
         definition: "The degree to which data has attributes that correctly represent the true value of the intended attribute of a concept or event in a specific usage context."
-    }
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "usability",
+        name: "Usability",
+        type: "characteristics",
+        definition: "The degree to which a product or system can be used by specific users to achieve specific goals effectively, efficiently, and to their satisfaction in a specified context of use."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "security",
+        name: "Security",
+        type: "characteristics",
+        definition: "The degree to which a product or system protects information and data so that people or other products or systems have the degree of access to the data that is appropriate for their authorization types and levels."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "availability",
+        name: "Availability",
+        type: "characteristics",
+        definition: "The degree to which data has attributes that allow it to be retrieved by authorized users and/or applications in a specific usage context."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "efficiency",
+        name: "Efficiency",
+        type: "characteristics",
+        definition: "The degree to which data have attributes that can be processed and provide the expected levels of performance using the appropriate amounts and types of resources in a specific use context."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "interoperability",
+        name: "Interoperability",
+        type: "characteristics",
+        definition: "The degree to which two or more systems, products, or components can exchange information and use the information that has been exchanged."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "portability",
+        name: "Portability",
+        type: "characteristics",
+        definition: "The degree to which data has attributes that allow it to be installed, replaced, or moved from one system to another while preserving existing quality in a specific usage context."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "reliability",
+        name: "Reliability",
+        type: "characteristics",
+        definition: "The degree to which a system, product, or component performs specified functions under specified conditions for a specified period of time."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "reusability",
+        name: "Reusability",
+        type: "characteristics",
+        definition: "The degree to which a resource can be used in more than one system, or in building other resources."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "robustness",
+        name: "Robustness",
+        type: "characteristics",
+        definition: "The ability of a system, product, or component to function even under abnormal conditions."
+    },
+    {
+        selected: false,
+        impacted: false,
+        id: "scalability",
+        name: "Scalability",
+        type: "characteristics",
+        definition: "The ease with which an application or component can be modified to expand its existing capabilities, including the ability to accommodate large volumes of data"
+    },
 ]
 
 const tools = [
