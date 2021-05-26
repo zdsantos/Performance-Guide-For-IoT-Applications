@@ -6,4 +6,8 @@
     input {
         width: unset !important;
     }
+
+    .form-input[disabled] {
+        background-color: color(low-contrast);
+    }
 }

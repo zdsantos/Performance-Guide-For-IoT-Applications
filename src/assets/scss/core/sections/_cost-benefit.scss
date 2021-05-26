@@ -3,12 +3,75 @@
     border-radius: 0 0 10px 10px;
     border: 2px #454BBA solid;
 
+    label {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        p {
+            margin: 0 0 0 12px;
+        }
+    }
+
+    .form-input[disabled] {
+        background-color: color(low-contrast);
+    }    
+
+    .info {
+        color: color(base);
+        font-size: 0.7em;
+    }
+
     .timespent-input-group {
         overflow: hidden;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
 
         .timespent-input {
             width: 10%;
             margin-right: calc(10%/9);
+            min-width: 70px;
         }
     }
+
+    .costbenefit-result {
+        display: inline-flex;
+        margin-top: 12px;
+
+        span {
+            color: color(mid-contrast-inverse);
+            font-weight: 700;
+        }
+
+        img {
+            float: right;
+            width: 30%;
+            min-width: 294px;
+            height: fit-content;
+        }
+    }
+}
+
+@include media( '<=medium' ) {
+
+	.cost-benefit {
+        .costbenefit-result {    
+            display: block;
+
+            img {
+                float: unset;
+                width: 100%;
+                height: auto;
+            }
+        }        
+	}
 }

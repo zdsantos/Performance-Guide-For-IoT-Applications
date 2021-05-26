@@ -6,6 +6,7 @@ import ButtonGroup from '../../elements/ButtonGroup';
 import Button from '../../elements/Button';
 import ReactToPrint from "react-to-print";
 import ReportService from '../../../services/reportService';
+import PrintService from '../../../services/printService';
 import notificationService from '../../../services/notificationService';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
@@ -55,7 +56,7 @@ const ReportPreview = ({
     var reportComponentRef = "";
 
     const generateReport = () => {
-        setReportComponent(ReportService.generateReport())
+        setReportComponent(PrintService.generateReport())
         setReportGenerated(true);
     }
 

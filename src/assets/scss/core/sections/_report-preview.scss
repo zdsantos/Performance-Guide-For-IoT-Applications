@@ -54,6 +54,24 @@
 			.property-title {
 				font-weight: 600;
 			}
+
+			.costbenefit-result {
+				display: inline-flex;
+				margin-top: 12px;
+		
+				span {
+					color: color(mid-contrast-inverse);
+					font-weight: 700;
+					font-size: 1em;
+				}
+		
+				img {
+					float: right;
+					width: 30%;
+					min-width: 294px;
+					height: fit-content;
+				}
+			}
 		}
 	}
 }

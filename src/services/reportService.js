@@ -1,7 +1,5 @@
 import { exception } from "react-ga";
 import { guideContent, tools, characteristics, iotCharacteristics } from '../models/guide-content-base';
-import React from 'react';
-import Latex from 'react-latex';
 import notificationService from "./notificationService";
 import Enums from "../models/enums";
 
@@ -13,8 +11,11 @@ class ReportService {
         this._Characteristics = characteristics;
         this._IoTCharacteristics = iotCharacteristics;
         this.Update = () => {};
+        this.UpdateCostBenefit = () => {};
         this.CostBenefit = null;
         this.DefaultHourlyWage = 18.0;
+        this.UseDefaultTimes = true;
+        this.UseDefaultHourlyWage = true;
     }
 
     // public methods
@@ -114,158 +115,6 @@ class ReportService {
         return result;
     }
 
-    generateReport() {
-        return <div class="report">
-            <div class="header">
-                <div class="container">
-                    <h1>Test Plan Template</h1>
-                </div>
-            </div>
-            {this._createIntroductionSection()}
-            <hr></hr>
-            {this._createsubcharacteristicSection()}
-            <hr></hr>
-            {this._createCaracteristicSection()}
-            <hr></hr>
-            {this._createToolsSection()}
-        </div>;
-    }
-
-    // private methods
-    _createIntroductionSection() {
-        var definitionsList = this._Characteristics[0].definitions.filter(d => d.selected);
-        
-        if (definitionsList.length > 0) {
-            return (<div class="container">
-                <h2>Performance</h2>
-                {definitionsList.map(this._printDefinition)}
-            </div>);
-        } else {
-            return;
-        }
-    }
-
-    _createsubcharacteristicSection() {
-        var subCarecteristic = this._Data.filter(d => d.selected);
-
-        if (subCarecteristic.length > 0) {
-            return (<div class="container">
-                <h2>Subcharacteristics</h2>
-                {subCarecteristic.map(this._printsubcharacteristic)}
-            </div>);
-        } else {
-            return;
-        }
-    }
-
-    _printDefinition(definition) {
-        return (<div class="container definition">
-            <h3>{definition.title}</h3>
-            <p>{definition.description}</p>
-        </div>)
-    }
-
-    _printsubcharacteristic(sub) {
-        return (<div class="container subcharacteristic">
-            <h3>{sub.name}</h3>
-            <p>{sub.description}</p>
-        </div>)
-    }
-
-    _createCaracteristicSection() {
-        var caracteristicsList = this._Data.filter(c => this._checkIsUsedCaracteristic(c));
-
-        if (caracteristicsList.length > 0 ){
-            return (<div class="container">
-                {
-                    caracteristicsList.map(this._printCaracteristic, this)
-                }
-            </div>);
-        } else {
-            return;
-        }
-    }
-
-    _createToolsSection() {
-        var toolsList = this._Tools.filter(t => t.selected);
-
-        if (toolsList.length > 0) {
-            return (<div class="container">
-                <h2>Tools</h2>
-                {toolsList.map(this._printItem)}
-            </div>);
-        } else {
-            return;
-        }
-    }
-
-    _printCaracteristic(caracteristic) {
-        let propertiesList = caracteristic.properties.filter(i => i.selected);
-        let testCasesList = caracteristic.testCases.filter(i => i.selected);
-        let metricsList = caracteristic.metrics.filter(i => i.selected);
-        
-        return (<div>
-            <h2>{caracteristic.name}</h2>
-            <h3>Properties</h3>
-            {propertiesList.map(this._printItem, this)}
-            <h3>Test Cases</h3>
-            {testCasesList.map(this._printItem, this)}
-            <h3>Metrics</h3>
-            {metricsList.map(this._printItem, this)}
-        </div>);
-    }
-
-    _printItem(data) {
-        if (data.type === "testCases") {
-            return (
-                <div class="item">
-                    <h4>{data.title}</h4>
-                    <p><span class="property-title">Test Evironment:</span> {data.testEnvironment}</p>
-                    <p><span class="property-title">Pre-Conditions:</span> {data.preConditions}</p>
-                    <p><span class="property-title">Step-by-step:</span>
-                    <ol class="stepsList">
-                        {data.steps.map(this._buildStepsListItem)}
-                    </ol>
-                    </p>
-                    <p><span class="property-title">Post-Conditions:</span> {data.postConditions}</p>
-                </div>
-            );
-        } else if (data.type === "metrics") {
-            return (
-                <div class="item">
-                    <h4>{data.title}</h4>
-                    <p><span class="property-title">Purpose:</span> {data.purpose}</p>
-                    <p><span class="property-title">Method:</span> {data.method}</p>
-                    <p><span class="property-title">Measure:</span>
-                    <ul class="stepsList">
-                        {data.measure.map(this._buildStepsListItem)}
-                    </ul>
-                    </p>
-                </div>
-            );
-        } else if (data.type === "properties") {
-            return (
-                <div class="item">
-                    <h4>{data.title}</h4>
-                    <p><span class="property-title">Description:</span> {data.description}</p>
-                </div>
-            );
-        } else {
-            return (
-                <div class="item">
-                    <h4>{data.title}</h4>
-                    <p><span class="property-title">Description:</span> {data.description}</p>
-                    <p><span class="property-title">License:</span> {data.license}</p>
-                    <p><span class="property-title">Link:</span> <a href={data.link} target="blank">{data.link}</a></p>
-                </div>
-            );
-        }
-    }
-
-    _buildStepsListItem(step) {
-        return (<li key={step}><Latex>{step}</Latex></li>)
-    };
-
     _checkIsUsedCaracteristic(caracteristic) {
         let hasProperties = false;
         let hasMetrics = false;
@@ -356,6 +205,14 @@ class ReportService {
     }
 
     calcCostBenefit(hourValue, timeValues) {
+        if (this.UseDefaultTimes) {
+            this.getSelectedTestCases().forEach(tc => { timeValues[tc.id] = tc.timeSpentDefault; tc.timeSpent = tc.timeSpentDefault });
+            this.getSelectedMetrics().forEach(mt => { timeValues[mt.id] = mt.timeSpentDefault; mt.timeSpent = mt.timeSpentDefault; });
+        }
+
+        if (this.UseDefaultHourlyWage) {
+            hourValue = this.DefaultHourlyWage;
+        }
         this._HourValue = hourValue;
 
         var ORC = this._IoTCharacteristics.filter(i => i.selected).length;
@@ -405,13 +262,17 @@ class ReportService {
         if (this.CostBenefit && this.CostBenefit.group) {
             switch (this.CostBenefit.group) {
                 case 1:
-                    return "High effort and low impact. High cost and low benefit = low priority - the effort to execute the tests is very high and the non-execution impacts a few correlated characteristics, it must be evaluated if the few characteristics that are impacted are essential to the system, if yes even with the high effort must be prioritized to conduct the tests and make use of the tools and the tables of relationships to reduce the effort during execution, if the impacted characteristics are not essential to the system there is no need for an immediate execution of tests.";
+                    return `High effort and low impact, that is, high cost and low benefit = low priority.<br />
+                    The effort to execute the tests is very high and the non-execution impacts a few correlated characteristics, it must be evaluated if the few characteristics that are impacted are essential to the system, if yes even with the high effort must be prioritized to conduct the tests and make use of the tools and the tables of relationships to reduce the effort during execution, if the impacted characteristics are not essential to the system there is no need for an immediate execution of tests.`;
                 case 2:
-                    return "Low effort and low impact. Low cost and low benefit = medium priority - the effort to perform the tests is low and not performing them impacts a few correlated characteristics, it must be evaluated if the few characteristics that are impacted are essential to the system, if yes they should be prioritized to conduct the tests, otherwise there is no need for immediate execution of the tests, but since for the execution of the tests a low effort is required, in a timely manner these tests can be performed easily and more completely using the section Impact of the Subcharacteristics, adding even more properties to be evaluated.";
+                    return `Low effort and low impact, that is, low cost and low benefit = medium priority. <br />
+                    The effort to perform the tests is low and not performing them impacts a few correlated characteristics, it must be evaluated if the few characteristics that are impacted are essential to the system, if yes they should be prioritized to conduct the tests, otherwise there is no need for immediate execution of the tests, but since for the execution of the tests a low effort is required, in a timely manner these tests can be performed easily and more completely using the section Impact of the Subcharacteristics, adding even more properties to be evaluated.`;
                 case 3:
-                    return "High effort and high impact. High cost but high benefit = high priority - the effort to execute the tests is very high and not executing impacts many correlated characteristics, the tests must be conducted and must use the strategies in the guide, such as tools and the relationship tables to decrease the effort in executing the tests."
+                    return `High effort and high impact, that is, high cost but high benefit = high priority.<br />
+                    The effort to execute the tests is very high and not executing impacts many correlated characteristics, the tests must be conducted and must use the strategies in the guide, such as tools and the relationship tables to decrease the effort in executing the tests.`;
                 case 4:
-                    return "Low effort and high impact. Low cost and high benefit = very high priority - high priority - the effort to execute the tests is low and not executing them has an impact on many correlated characteristics, the tests should be conducted and because they involve low effort, even more properties can be added to be evaluated through the Impact section of the subcharacteristics, and if not all the abstract test cases are being used, it is suggested that they all be added.";
+                    return `Low effort and high impact, that is, low cost and high benefit = very high priority - high priority.<br />
+                    The effort to execute the tests is low and not executing them has an impact on many correlated characteristics, the tests should be conducted and because they involve low effort, even more properties can be added to be evaluated through the Impact section of the subcharacteristics, and if not all the abstract test cases are being used, it is suggested that they all be added.`;
                 default:
                     return `Unexpected group id: ${this.CostBenefit.group}.`;
             }
@@ -444,6 +305,14 @@ class ReportService {
         });
     }
 
+    changeUseDefaultTimes(value) {
+        this.UseDefaultTimes = value;
+    }
+
+    changeUseDefaultHourlyWage(value) {
+        this.UseDefaultHourlyWage = value;
+    }
+
     reset() {
         var currentList = this._Data.concat(this._Characteristics).concat(this._Tools).concat(this._IoTCharacteristics);
 
@@ -463,6 +332,15 @@ class ReportService {
         }
 
         this.Update();
+    }
+
+    resetCostBenefit() {
+        this.UseDefaultTimes = true;
+        this.UseDefaultHourlyWage = true;
+        this.CostBenefit = null;
+
+        this.Update();
+        // this.UpdateCostBenefit();
     }
 
     _createNotificationError(item, errorId) {

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { SectionTilesProps } from '../../../utils/SectionProps';
 import ButtonGroup from '../../elements/ButtonGroup';
 import Input from '../../elements/Input';
+import Image from '../../elements/Image';
 import Button from '../../elements/Button';
 import { useForm } from 'react-hook-form';
 import notificationService from '../../../services/notificationService';
@@ -24,8 +25,21 @@ const CostBenefit = ({
     const { register, watch } = useForm();
     const [costBenefitCalculated, setCostBenefitCalculated] = useState(reportService.CostBenefit !== null);
     const [hasAllInformations, setHasAllInformations] = useState(false);
+    const [useDefaultTimes, setUseDefaultTimes] = useState(reportService.UseDefaultTimes)
+    const [useDefaultHourlyWage, setUseDefaultHourlyWage] = useState(reportService.UseDefaultHourlyWage)
+    const hourly = reportService._HourValue;
     const timeValues = {};
     const hourValue = watch('hourValue', reportService._HourValue) || "";;
+
+    const handleTimesChange = (e) => {
+        setUseDefaultTimes(e.target.checked);
+        reportService.changeUseDefaultTimes(e.target.checked);
+    }
+
+    const handleHourlyChange = (e) => {
+        setUseDefaultHourlyWage(e.target.checked);
+        reportService.changeUseDefaultHourlyWage(e.target.checked);
+    }
 
     const inputName = (item) => {
         return `${item.id}-time`;
@@ -60,15 +74,23 @@ const CostBenefit = ({
         var loadingId = notificationService.showInfo("Calculating...");
         let hasError = false;
 
-        Object.entries(timeValues).forEach(tv => {
-            if (tv[1] === '')
+        if (!useDefaultTimes) {
+            Object.entries(timeValues).forEach(tv => {
+                if (tv[1] === '')
+                    hasError = true;
+            });
+            if (hasError) {
+                notificationService.showError("All time values must be filled.");
+            }
+        }
+        
+        if (!useDefaultHourlyWage) {
+            if (hourValue === "" || hourValue === 0) {
                 hasError = true;
-        });
-        if (hasError) {
-            notificationService.showError("All time values must be filled.");
+                notificationService.showError("Hourly wage must be entered and should be different from zero.");
+            }
         }
 
-        
         if (!hasError) {
             reportService.setTimeSpentValues(timeValues);
             var costBenefitresult = reportService.calcCostBenefit(hourValue, timeValues);
@@ -82,14 +104,17 @@ const CostBenefit = ({
     const renderResult = () => {
         var text = reportService.getCostBenefitGroupDescription();
         return <div className="costbenefit-result">
-            <span>Impact: {reportService.CostBenefit.impact}</span><br />
-            <span>Effort: {reportService.CostBenefit.effort}</span><br />
-            <p>{text}</p>
+            <div>
+                <span>Impact: {reportService.CostBenefit.impact.toFixed(2)}</span><br />
+                <span>Effort: {reportService.CostBenefit.effort.toFixed(2)}</span><br />
+                <p dangerouslySetInnerHTML={{ __html: text }}></p>
+            </div>
+            <Image alt="Archteture flow" src={require('../../../assets/images/groups.png')}></Image>
         </div>
     }
 
     const renderTimeSpentInput = (item) => {
-        return <TimeSpentInput itemId={item.id} value={item['timeSpent']} {...register(inputName(item), { required: true })}></TimeSpentInput>
+        return <TimeSpentInput itemId={item.id} disabled={useDefaultTimes} value={item['timeSpent']} {...register(inputName(item), { required: true })}></TimeSpentInput>
     }
 
     const renderTestCasesInputs = () => {
@@ -118,20 +143,45 @@ const CostBenefit = ({
         }
     }
 
+    // const reset = () => {
+    //     reportService.resetCostBenefit();
+    //     notificationService.showSucess("The cost/benefit data was reset.")
+    //     setCostBenefitCalculated(false);
+    // }
+
+    // reportService.UpdateCostBenefit = () => {
+    //     setUpdate(update);
+    // }
+
     return (
         <section
             {...props}
             className={outerClasses}
         >
             <div className="container">
-                <form id="contactForm" onSubmit={onSubmit}>
-                    <Input className="mb-24" value={reportService._HourValue} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" {...register("hourValue", { required: true })}></Input>
-                    {/* <Input className="mb-24" value={reportService._TestDuration} name="testDuration" type="number" min="0" step=".01" label="Duration of tests" {...register("testDuration", { required: true })}></Input>
-                    <Input className="mb-24" value={reportService._MetricsDuration} name="metricsDuration" type="number" min="0" step=".01" label="Duration of metrics" rows={5} {...register("metricsDuration", { required: true })}></Input> */}
+                <p>The cost benefit provides insight into how high a priority it is to run the selected test cases and metrics. The calculation is based on the hourly value of the tester, the quantities of selected features in correlations, and the time to execute each test and metric.</p>
+                <p className="info">* Average hourly wage of a North American "Tester" in the year 2021. <br />
+**The suggested time value of metrics and test cases is based on an execution performed by an experienced Tester on an application that has 2 sensors and 1 actuator and did not use any tools in the process.</p>
+                
+                <form id="contactForm">
+                    <div>
+                        <label>
+                            <input className="checkbox" type="checkbox" checked={useDefaultHourlyWage} onChange={handleHourlyChange}></input>
+                            <p>Use suggested hourly wage</p>
+                        </label>
+                    </div>
+                    <Input className="mb-24" value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" {...register("hourValue", { required: true })}></Input>
+                    <div>
+                        <label>
+                            <input className="checkbox" type="checkbox" checked={useDefaultTimes} onChange={handleTimesChange}></input>
+                            <p>Use suggested times for test cases and metrics</p>
+                        </label>
+                    </div>
                     {renderTestCasesInputs()}
                     {renderMetricsInputs()}
                     <ButtonGroup>
-                        <Button type="submit" color="secondary" disabled={!hasAllInformations} wideMobile>Send</Button>
+                        {/* <Button color="danger" disabled={!hasAllInformations} onClick={reset}>Reset</Button> */}
+                        <Button type="submit" color="secondary" disabled={!hasAllInformations} onClick={onSubmit}>Send</Button>
                     </ButtonGroup>
                 </form>
                 <div hidden={!costBenefitCalculated}>
