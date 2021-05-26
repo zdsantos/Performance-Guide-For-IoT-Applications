@@ -85,6 +85,15 @@ const Slider = ({
                             <div>
                                 <img alt="step 7" src={require('../../assets/images/steps_Prancheta 7.png')} />
                             </div>
+                            <div>
+                                <img alt="step 8" src={require('../../assets/images/steps_Prancheta 8.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 9" src={require('../../assets/images/steps_Prancheta 9.png')} />
+                            </div>
+                            <div>
+                                <img alt="step 10" src={require('../../assets/images/steps_Prancheta 10.png')} />
+                            </div>
                         </Carousel>
                     </div>
                 </div>

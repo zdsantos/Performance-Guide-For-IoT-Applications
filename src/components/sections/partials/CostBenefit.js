@@ -167,14 +167,14 @@ const CostBenefit = ({
                     <div>
                         <label>
                             <input className="checkbox" type="checkbox" checked={useDefaultHourlyWage} onChange={handleHourlyChange}></input>
-                            <p>Use suggested hourly wage</p>
+                            <p>Use suggested hourly wage* ($18/hour)</p>
                         </label>
                     </div>
                     <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour" {...register("hourValue", { required: true })}></Input>
                     <div>
                         <label>
                             <input className="checkbox" type="checkbox" checked={useDefaultTimes} onChange={handleTimesChange}></input>
-                            <p>Use suggested times for test cases and metrics</p>
+                            <p>Use suggested times for test cases and metrics**</p>
                         </label>
                     </div>
                     {renderTestCasesInputs()}
