@@ -224,10 +224,11 @@ class ReportService {
         var MT = [];
 
         Object.entries(timeValues).forEach(tv => {
+            let timeInHour = tv[1]/60 // convert minute to hour
             if (tv[0].startsWith('T'))
-                CT.push(hourValue * tv[1]);
+                CT.push(hourValue * timeInHour);
             else
-                MT.push(hourValue * tv[1]);
+                MT.push(hourValue * timeInHour);
         });        
 
         var maxCT = Math.max(...CT);

@@ -154,7 +154,7 @@ const GuideContentItem = ({
         className={classes}
         key={data.id}
       >
-      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.title} easing="ease">
+      <Collapsible triggerTagName="div" className={highlightClass} trigger={data.name} easing="ease">
         <p><span className="property-title">Definition:</span> {data.description}</p>
         <div className="item-description">
           {actionButton}

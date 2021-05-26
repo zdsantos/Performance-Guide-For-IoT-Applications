@@ -120,7 +120,7 @@ const CostBenefit = ({
     const renderTestCasesInputs = () => {
         if (reportService.getSelectedTestCases().length > 0) {
             return (<>
-                <h3>Test Cases</h3>
+                <h4>Test Cases</h4>
                 <div className="timespent-input-group">
                     {reportService.getSelectedTestCases().map(renderTimeSpentInput)}
                 </div>
@@ -133,7 +133,7 @@ const CostBenefit = ({
     const renderMetricsInputs = () => {
         if (reportService.getSelectedMetrics().length > 0) {
             return (<>
-                <h3>Metrics</h3>
+                <h4>Metrics</h4>
                 <div className="timespent-input-group">
                     {reportService.getSelectedMetrics().map(renderTimeSpentInput)}
                 </div>
@@ -170,7 +170,7 @@ const CostBenefit = ({
                             <p>Use suggested hourly wage</p>
                         </label>
                     </div>
-                    <Input className="mb-24" value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" {...register("hourValue", { required: true })}></Input>
+                    <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour" {...register("hourValue", { required: true })}></Input>
                     <div>
                         <label>
                             <input className="checkbox" type="checkbox" checked={useDefaultTimes} onChange={handleTimesChange}></input>
@@ -181,7 +181,7 @@ const CostBenefit = ({
                     {renderMetricsInputs()}
                     <ButtonGroup>
                         {/* <Button color="danger" disabled={!hasAllInformations} onClick={reset}>Reset</Button> */}
-                        <Button type="submit" color="secondary" disabled={!hasAllInformations} onClick={onSubmit}>Send</Button>
+                        <Button type="submit" color="secondary" disabled={!hasAllInformations} onClick={onSubmit}>Calculate</Button>
                     </ButtonGroup>
                 </form>
                 <div hidden={!costBenefitCalculated}>

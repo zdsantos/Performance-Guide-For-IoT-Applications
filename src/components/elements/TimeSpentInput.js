@@ -27,7 +27,7 @@ const TimeSpentInput = ({
 
     return (
         <div className={classes}>
-            <Input className="mb-24" value={value} name={itemId} type="number" min="0" step=".01" label={itemId} {...props}></Input>
+            <Input className="mb-24" value={value} name={itemId} type="number" min="0" step=".01" label={itemId} hint="in minutes" {...props}></Input>
         </div>
     );
 }

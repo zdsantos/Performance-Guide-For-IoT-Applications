@@ -10,4 +10,8 @@
     .form-input[disabled] {
         background-color: color(low-contrast);
     }
+
+    .form-hint {
+        margin-top: -24px !important;
+    }
 }

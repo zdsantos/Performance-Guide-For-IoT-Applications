@@ -16,9 +16,18 @@
         }
     }
 
+    h4 {
+        margin-bottom: 0px;
+    }
+
     .form-input[disabled] {
         background-color: color(low-contrast);
-    }    
+    }
+
+    .button-group {
+        justify-content: center;
+        margin: 12px 0px 12px 0px;
+    }
 
     .info {
         color: color(base);
@@ -41,6 +50,10 @@
             margin-right: calc(10%/9);
             min-width: 70px;
         }
+    }
+
+    .form-hint {
+        margin-top: 0px;
     }
 
     .costbenefit-result {
