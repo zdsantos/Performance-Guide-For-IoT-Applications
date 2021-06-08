@@ -58,6 +58,7 @@ const Guide = ({
         <section
             {...props}
             className={outerClasses}
+            name='guide'
         >
             <div className="container">
                 <SectionHeader data={sectionHeader} className="center-content" />

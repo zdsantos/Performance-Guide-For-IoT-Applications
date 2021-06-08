@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
 import Resources from '../../services/text-resource';
 import parser from 'html-react-parser';
+import { Link } from 'react-scroll'
 
 const propTypes = {
   ...SectionProps.types
@@ -57,9 +57,9 @@ const Hero = ({
                 </p> */}
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
-                    <Button tag="a" color="primary" wideMobile href="#guide">
+                    <Link className="button button-primary button-wide-mobile" color="primary" to="guide" spy={true} smooth={true} duration={500} delay={400}>
                       {parser(Resources.getResource().GetStarted)}
-                    </Button>
+                    </Link>
                 </ButtonGroup>
               </div>
             </div>

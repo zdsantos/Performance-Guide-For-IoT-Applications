@@ -1313,7 +1313,7 @@ const tools = [
         type: "tools",
         description: "Test platform for cloud computing. Performs load tests, functional tests, among others. It provides test scenarios that the user can use directly or adapt to their application or even create their own test cases. In addition, the tool performs network traffic monitoring.",
         license: "Closed",
-        link: "https://www.soapui.org/professional/loadui -pro/"
+        link: "https://www.soapui.org/professional/loadui-pro/"
     },
     {
         selected: false,
