@@ -16,6 +16,7 @@ class ReportService {
         this.DefaultHourlyWage = 18.0;
         this.UseDefaultTimes = true;
         this.UseDefaultHourlyWage = true;
+        this._HourValue = undefined;
     }
 
     // public methods
@@ -208,6 +209,19 @@ class ReportService {
         if (this.UseDefaultTimes) {
             this.getSelectedTestCases().forEach(tc => { timeValues[tc.id] = tc.timeSpentDefault; tc.timeSpent = tc.timeSpentDefault });
             this.getSelectedMetrics().forEach(mt => { timeValues[mt.id] = mt.timeSpentDefault; mt.timeSpent = mt.timeSpentDefault; });
+        } else {
+            this.getSelectedTestCases().forEach(tc => {
+                if (timeValues[tc.id] === '') {
+                    timeValues[tc.id] = tc.timeSpentDefault;
+                    tc.timeSpent = tc.timeSpentDefault
+                }
+            });
+            this.getSelectedMetrics().forEach(mt => {
+                if (timeValues[mt.id] === '') {
+                    timeValues[mt.id] = mt.timeSpentDefault;
+                    mt.timeSpent = mt.timeSpentDefault;
+                }
+            });
         }
 
         if (this.UseDefaultHourlyWage) {
@@ -302,7 +316,11 @@ class ReportService {
 
     setTimeSpentValues(timeValues) {
         Object.entries(timeValues).forEach(tv => {
-            this.getItemById(tv[0])['timeSpent'] = tv[1];
+            var item = this.getItemById(tv[0]);
+            if (tv[1] !== '')
+                item['timeSpent'] = tv[1];
+            else
+                item['timeSpent'] = item['timeSpentDefault'];
         });
     }
 
@@ -340,8 +358,11 @@ class ReportService {
         this.UseDefaultHourlyWage = true;
         this.CostBenefit = null;
 
-        this.Update();
-        // this.UpdateCostBenefit();
+        this.getSelectedTestCases().forEach(t => t['timeSpent'] = '');
+        this.getSelectedMetrics().forEach(m => m['timeSpent'] = '');
+
+        // this.Update();
+        this.UpdateCostBenefit();
     }
 
     _createNotificationError(item, errorId) {

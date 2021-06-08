@@ -6,17 +6,20 @@ import Input from './Input';
 const propTypes = {
     itemId: PropTypes.string,
     value: PropTypes.string,
+    placeholder: PropTypes.string,
 }
 
 const defaultProps = {
     itemId: '',
-    value: undefined
+    value: undefined,
+    placeholder: ''
 }
 
 const TimeSpentInput = ({
     className,
     itemId,
     value,
+    placeholder,
     ...props
 }) => {
 
@@ -27,7 +30,7 @@ const TimeSpentInput = ({
 
     return (
         <div className={classes}>
-            <Input className="mb-24" value={value} name={itemId} type="number" min="0" step=".01" label={itemId} hint="in minutes" {...props}></Input>
+            <Input className="mb-24" value={value} placeholder={placeholder} name={itemId} type="number" min="0" step=".01" label={itemId} hint="in minutes" {...props}></Input>
         </div>
     );
 }

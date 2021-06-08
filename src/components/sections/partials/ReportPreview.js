@@ -62,18 +62,6 @@ const ReportPreview = ({
 
     const showResetConfirm = () => {
         confirmAlert({
-            // title: 'Confirm to Reset',
-            // message: 'Are you sure to reset all informations?',
-            // buttons: [
-            //     {
-            //         label: 'Yes, clean all',
-            //         onClick: () => reset()
-            //     },
-            //     {
-            //         label: 'No',
-            //         onClick: () => {}
-            //     }
-            // ]
             customUI: ({ onClose }) => {
                 return (
                   <div className='modal-confirm'>
@@ -91,6 +79,7 @@ const ReportPreview = ({
 
     const reset = () => {
         ReportService.reset();
+        setReportGenerated(false);
         notificationService.showSucess("The guide was reset, all informations was cleaned.")
     }
 

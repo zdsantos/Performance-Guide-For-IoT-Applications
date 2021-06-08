@@ -7,6 +7,10 @@
         width: unset !important;
     }
 
+    input::placeholder {
+        color: color(input);
+    }
+
     .form-input[disabled] {
         background-color: color(low-contrast);
     }

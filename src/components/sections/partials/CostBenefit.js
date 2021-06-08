@@ -27,7 +27,7 @@ const CostBenefit = ({
     const [hasAllInformations, setHasAllInformations] = useState(false);
     const [useDefaultTimes, setUseDefaultTimes] = useState(reportService.UseDefaultTimes)
     const [useDefaultHourlyWage, setUseDefaultHourlyWage] = useState(reportService.UseDefaultHourlyWage)
-    const hourly = reportService._HourValue;
+    const hourly = reportService._HourValue ? reportService._HourValue : reportService.DefaultHourlyWage;
     const timeValues = {};
     const hourValue = watch('hourValue', reportService._HourValue) || "";;
 
@@ -57,6 +57,7 @@ const CostBenefit = ({
         if (reportService.getSelectedTestCases().length === 0 || reportService.getSelectedMetrics().length === 0) {
             notificationService.showInfo('At least one correlation, one test case, and one metric must be selected.');
             setHasAllInformations(false);
+            setCostBenefitCalculated(false);
         } else {
             setHasAllInformations(true);
         }
@@ -76,8 +77,9 @@ const CostBenefit = ({
 
         if (!useDefaultTimes) {
             Object.entries(timeValues).forEach(tv => {
-                if (tv[1] === '')
-                    hasError = true;
+                if (tv[1] === '') {
+                    tv[1] = reportService.getItemById(tv[0])['timeSpentDefault'];
+                }
             });
             if (hasError) {
                 notificationService.showError("All time values must be filled.");
@@ -114,7 +116,7 @@ const CostBenefit = ({
     }
 
     const renderTimeSpentInput = (item) => {
-        return <TimeSpentInput itemId={item.id} disabled={useDefaultTimes} value={item['timeSpent']} {...register(inputName(item), { required: true })}></TimeSpentInput>
+        return <TimeSpentInput itemId={item.id} disabled={useDefaultTimes} value={item['timeSpent']} placeholder={item['timeSpentDefault']} {...register(inputName(item), { required: true })}></TimeSpentInput>
     }
 
     const renderTestCasesInputs = () => {
@@ -146,11 +148,13 @@ const CostBenefit = ({
     // const reset = () => {
     //     reportService.resetCostBenefit();
     //     notificationService.showSucess("The cost/benefit data was reset.")
-    //     setCostBenefitCalculated(false);
     // }
-
+    
     // reportService.UpdateCostBenefit = () => {
-    //     setUpdate(update);
+    //     setCostBenefitCalculated(reportService.CostBenefit !== null);
+    //     setUseDefaultTimes(true);
+    //     setUseDefaultHourlyWage(true);
+    //     hourly = reportService._HourValue ? reportService._HourValue : reportService.DefaultHourlyWage;
     // }
 
     return (
@@ -170,7 +174,12 @@ const CostBenefit = ({
                             <p>Use suggested hourly wage* ($18/hour)</p>
                         </label>
                     </div>
-                    <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour" {...register("hourValue", { required: true })}></Input>
+                    <>
+                        {useDefaultHourlyWage ? <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour"></Input>
+                            : <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour" {...register("hourValue", { required: true })}></Input>
+                        }
+                    </>
+                    {/* <Input value={hourly} disabled={useDefaultHourlyWage} name="hourValue" type="number" min="0" step=".01" label="Professional hour value" hint="in dollars per hour" {...register("hourValue", { required: true })}></Input> */}
                     <div>
                         <label>
                             <input className="checkbox" type="checkbox" checked={useDefaultTimes} onChange={handleTimesChange}></input>
