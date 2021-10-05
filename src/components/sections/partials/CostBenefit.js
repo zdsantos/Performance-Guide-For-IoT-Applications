@@ -5,10 +5,11 @@ import ButtonGroup from '../../elements/ButtonGroup';
 import Input from '../../elements/Input';
 import Image from '../../elements/Image';
 import Button from '../../elements/Button';
-import { useForm } from 'react-hook-form';
 import notificationService from '../../../services/notificationService';
 import reportService from '../../../services/reportService';
 import TimeSpentInput from '../../elements/TimeSpentInput';
+import useForm from '../../../hooks/useForm';
+import { initialize } from 'react-ga';
 
 const propTypes = {
     ...SectionTilesProps.types
@@ -22,14 +23,18 @@ const CostBenefit = ({
     className,
     ...props
 }) => {
-    const { register, watch } = useForm();
     const [costBenefitCalculated, setCostBenefitCalculated] = useState(reportService.CostBenefit !== null);
     const [hasAllInformations, setHasAllInformations] = useState(false);
     const [useDefaultTimes, setUseDefaultTimes] = useState(reportService.UseDefaultTimes)
     const [useDefaultHourlyWage, setUseDefaultHourlyWage] = useState(reportService.UseDefaultHourlyWage)
     const hourly = reportService._HourValue ? reportService._HourValue : reportService.DefaultHourlyWage;
-    const timeValues = {};
-    const hourValue = watch('hourValue', reportService._HourValue) || "";;
+
+    const [values, setValues] = useState({});
+
+    const handleTimesInputChange = (e) => {
+        values[e.target.key] = e.target.value;
+        setValues(values);
+    }
 
     const handleTimesChange = (e) => {
         setUseDefaultTimes(e.target.checked);
@@ -45,12 +50,18 @@ const CostBenefit = ({
         return `${item.id}-time`;
     }
 
+    const formInputs = {};
+
     reportService.getSelectedTestCases().forEach(t => {
-        timeValues[t.id] = watch(inputName(t), t['timeSpent']) || "";
+        formInputs[t.id] = useForm();
+        var initialValue = t['timeSpent'] ? t['timeSpent'] : t['timeSpentDefault'];
+        formInputs[t.id].setValue(initialValue);
     });
 
-    reportService.getSelectedMetrics().forEach(t => {
-        timeValues[t.id] = watch(inputName(t), t['timeSpent']) || "";
+    reportService.getSelectedMetrics().forEach(m => {
+        formInputs[m.id] = React.useForm();
+        var initialValue = m['timeSpent'] ? m['timeSpent'] : m['timeSpentDefault'];
+        formInputs[m.id].setValue(initialValue);
     });
 
     useEffect(() => {
@@ -70,32 +81,35 @@ const CostBenefit = ({
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(timeValues);
 
         var loadingId = notificationService.showInfo("Calculating...");
         let hasError = false;
+        var values = {};
 
         if (!useDefaultTimes) {
-            Object.entries(timeValues).forEach(tv => {
-                if (tv[1] === '') {
-                    tv[1] = reportService.getItemById(tv[0])['timeSpentDefault'];
+            Object.entries(formInputs).forEach(tv => {
+                if (!tv[1].value || tv[1].value === '') {
+                    tv[1].setValue(reportService.getItemById(tv[0])['timeSpentDefault']);
                 }
+
+                values[tv[0]] = tv[1].value;
             });
             if (hasError) {
                 notificationService.showError("All time values must be filled.");
             }
         }
         
-        if (!useDefaultHourlyWage) {
-            if (hourValue === "" || hourValue === 0) {
-                hasError = true;
-                notificationService.showError("Hourly wage must be entered and should be different from zero.");
-            }
-        }
+        // if (!useDefaultHourlyWage) {
+        //     if (hourValue === "" || hourValue === 0) {
+        //         hasError = true;
+        //         notificationService.showError("Hourly wage must be entered and should be different from zero.");
+        //     }
+        // }
 
+        console.log(values)
         if (!hasError) {
-            reportService.setTimeSpentValues(timeValues);
-            var costBenefitresult = reportService.calcCostBenefit(hourValue, timeValues);
+            reportService.setTimeSpentValues(values);
+            var costBenefitresult = reportService.calcCostBenefit(hourValue, values);
             setCostBenefitCalculated(true);
             console.log(costBenefitresult);
         }
@@ -116,7 +130,7 @@ const CostBenefit = ({
     }
 
     const renderTimeSpentInput = (item) => {
-        return <TimeSpentInput itemId={item.id} disabled={useDefaultTimes} value={item['timeSpent']} placeholder={item['timeSpentDefault']} {...register(inputName(item), { required: true })}></TimeSpentInput>
+        return <TimeSpentInput key={item.id} itemId={item.id} disabled={useDefaultTimes} placeholder={item['timeSpentDefault']} {...formInputs[item.id]}></TimeSpentInput>
     }
 
     const renderTestCasesInputs = () => {

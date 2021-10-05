@@ -396,7 +396,7 @@ const guideContent = [
                     "$t1$ = time the message was sent to the destination",
                     "$t2$ = time the response arrived at the origin"
                 ],
-                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'ifogsim', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify', 'soasta']
+                dependents: ['TC01', 'TC02', 'TC03', 'TC04', 'TC05', 'TC06', 'TC07', 'TC08', 'TC09', 'TC10', 'TC11', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify']
             },
             {
                 selected: false,
@@ -815,7 +815,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the stand by period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -834,7 +834,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the peak usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -853,7 +853,7 @@ const guideContent = [
                     "$m$ = number of consumption readings in the standard usage period",
                     "$E_{m}^{n}$ = mth reading of the n-th component"
                 ],
-                dependents: ['TC12', 'TC16', 'TC17', 'ifogsim']
+                dependents: ['TC12', 'TC16', 'TC17']
             },
             {
                 selected: false,
@@ -871,7 +871,7 @@ const guideContent = [
                     "$n$ = number of consumption readings in the stand by period",
                     "$C_n$ = nth consumption value"
                 ],
-                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
+                dependents: ['TC15', 'TC18', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
@@ -889,7 +889,7 @@ const guideContent = [
                     "$n$ = number of consumption readings in the peak usage period",
                     "$C_n$ = nth value of consumption in the peak usage period"
                 ],
-                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
+                dependents: ['TC15', 'TC18', 'wireshark', 'tcpdump']
             },
             {
                 selected: false,
@@ -907,7 +907,7 @@ const guideContent = [
                     "$n$ = number of consumption readings in the standard usage period",
                     "$C_n$ = nth consumption value in the standard usage period"
                 ],
-                dependents: ['TC15', 'TC18', 'ifogsim', 'wireshark', 'tcpdump']
+                dependents: ['TC15', 'TC18', 'wireshark', 'tcpdump']
             }
         ]
     },
@@ -1062,7 +1062,7 @@ const guideContent = [
                     "$s$ = package size",
                     "$t$ = time to send the message"
                 ],
-                dependents: ['TC20', 'TC21', 'TC22', 'TC23', 'ifogsim', 'neotys', 'wireshark', 'tcpdump', 'iotify', 'soasta']
+                dependents: ['TC20', 'TC21', 'TC22', 'TC23', 'neotys', 'wireshark', 'tcpdump', 'iotify']
             },
             {
                 selected: false,
@@ -1079,7 +1079,7 @@ const guideContent = [
                     "$X$ = maximum number of simultaneous users",
                     "$U$ = quantities of simultaneous users$"
                 ],
-                dependents: ['TC20', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify', 'soasta']
+                dependents: ['TC20', 'neotys', 'wireshark', 'loadUI', 'tcpdump', 'iotify']
             }
         ]
     }
@@ -1278,16 +1278,6 @@ const tools = [
     {
         selected: false,
         impacted: false,
-        id: "ifogsim",
-        title: "iFogSim",
-        type: "tools",
-        description: "Simulator for Cloud Computing. Simulates devices and performs measurements, for example latency and network congestion.",
-        license: "Open-Source",
-        link: "https://github.com/Cloudslab/iFogSim"
-    },
-    {
-        selected: false,
-        impacted: false,
         id: "neotys",
         title: "Neotys",
         type: "tools",
@@ -1334,16 +1324,6 @@ const tools = [
         description: "Similar to Wireshark, it monitors packet traffic on the network. You can identify traffic on specific ports, traffic from a specific sender, and recipients, and other functions.",
         license: "Open-Source",
         link: "http://www.tcpdump.org/"
-    },
-    {
-        selected: false,
-        impacted: false,
-        id: "soasta",
-        title: "SOASTA CloudTes",
-        type: "tools",
-        description: "A tool used in performance testing and load testing in WEB Systems, it allows you to simulate an environment with several devices, with real-time analysis.",
-        license: "Partially Open source",
-        link: "https://community.akamai.com/customers/s/article/CloudTest-Methodology-and-Assets?language=en_US"
     }
 ];
 
